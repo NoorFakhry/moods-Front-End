@@ -1,9 +1,10 @@
 import React, {Fragment} from 'react';
+import NavBar from '../NavBar/NavBar';
 
 const HomePage = () => {
     return (
         <Fragment>
-            <h1>Home page</h1>
+            <NavBar/>
         </Fragment>
     )
 };
