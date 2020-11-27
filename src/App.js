@@ -7,12 +7,14 @@ import {
   Link
 } from "react-router-dom";
 import WelcomePage from './features/WelcomePage';
+import HomePage from './features/HomePage/HomePage';
 
 const App = () => {
   return (
     <div className="App">
       <Router>
-        <Route exact path = '/' component = {WelcomePage}></Route>
+        <Route exact path = "/" component = {WelcomePage}></Route>
+        <Route exact path = "/homePage" component = {HomePage}></Route>
       </Router>
     </div>
   );
