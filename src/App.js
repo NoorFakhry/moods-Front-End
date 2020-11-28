@@ -7,8 +7,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
-import WelcomePage from './features/WelcomePage';
-import HomePage from './features/HomePage/HomePage';
+import WelcomePage from './UI-components/WelcomePage/WelcomePage';
+import HomePage from './UI-components/HomePage/HomePage';
 
 const App = () => {
   return (
