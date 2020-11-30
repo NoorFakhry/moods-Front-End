@@ -9,6 +9,8 @@ import {
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
 import HomePage from './UI-components/HomePage/HomePage';
+import './features/searchResults';
+import './tokens/tokens'
 
 const App = () => {
   return (
