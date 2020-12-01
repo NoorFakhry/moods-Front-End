@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as SpotifyApi from 'spotify-web-api-js';
-import {accessToken, refreshToken} from '../tokens/tokens'
+import {accessToken, /*refreshToken*/} from '../tokens/tokens'
 const spotify = new SpotifyApi();
 
 spotify.setAccessToken(accessToken);
@@ -26,6 +26,15 @@ const albumsResults= albumsAdapter.getInitialState({
     error: null
 });
 
+// create selectors object for the albums
+const albumsSelectors = albumsAdapter.getSelectors( state => state.searchResults.albumsResults );
+
+// create selectors for the albums
+// to be able to use them in any of the UI components
+export const {
+    selectAll: selectAllAlbums
+} = albumsSelectors;
+
 // create adapter for artists results
 const artistsAdapter = createEntityAdapter({
     //sortComparer: ( a, b ) => b.popularity.localeCompare( a.popularity )
@@ -37,6 +46,15 @@ const artistsResults= artistsAdapter.getInitialState({
     error: null
 });
 
+// create selectors object for the artists
+const artistsSelectors = artistsAdapter.getSelectors( state => state.searchResults.artistsResults );
+
+// create selectors for the artists
+// to be able to use them in any of the UI components
+export const {
+    selectAll: selectAllArtists
+} = artistsSelectors;
+
 // create adapter for tracks results
 const tracksAdapter = createEntityAdapter({
     sortComparer: ( a, b ) => b.album.release_date.localeCompare( a.album.release_date )
@@ -47,6 +65,15 @@ const tracksResults= tracksAdapter.getInitialState({
     status: 'idle',
     error: null
 });
+
+// create selectors object for the tracks
+const tracksSelectors = tracksAdapter.getSelectors( state => state.searchResults.tracksResults );
+
+// create selectors for the tracks
+// to be able to use them in any of the UI components
+export const {
+    selectAll: selectAllTracks
+} = tracksSelectors;
 
 // initial state for the searchResults slice
 const searchResultsInitialState = {
