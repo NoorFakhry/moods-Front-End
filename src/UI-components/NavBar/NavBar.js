@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
@@ -17,8 +18,23 @@ const NavBar = () => {
         if( searchInput ) {
             dispatch( getSearchResults( searchInput ) )
         }
-        //setSearchInput( '' )
     }
+    // link to searchResults page if the user enters something as input
+    const linkToSearchResults = () => {
+        if(searchInput) {
+            return <Link to="/searchResults">
+                        <Button variant="outline-light"
+                            onClick = {onSearchButtonClick}
+                        > Search
+                        </Button>
+                    </Link>
+        } else {
+            return <Button variant="outline-light"
+                    >Search
+                    </Button>
+        }
+    }
+
     return(
         <Fragment>
             <Navbar bg="primary" variant="dark">
@@ -28,9 +44,7 @@ const NavBar = () => {
                 <Form inline>
                     <FormControl type="text" placeholder="Search" className="mr-sm-2"
                     onChange = {onSearchChange} />
-                    <Button variant="outline-light"
-                    onClick = {onSearchButtonClick}
-                    >Search</Button>
+                    {linkToSearchResults()}
                 </Form>
             </Navbar>
         </Fragment>
