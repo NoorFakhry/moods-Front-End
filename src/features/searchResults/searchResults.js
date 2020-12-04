@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import * as SpotifyApi from 'spotify-web-api-js';
-import {accessToken, /*refreshToken*/} from '../tokens/tokens'
+import {accessToken, /*refreshToken*/} from '../../tokens/tokens'
 const spotify = new SpotifyApi();
 
 spotify.setAccessToken(accessToken);

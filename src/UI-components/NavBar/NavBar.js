@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
-import {getSearchResults} from '../../features/searchResults';
+import {getSearchResults} from '../../features/searchResults/searchResults';
 
 const NavBar = () => {
     // create an inner state for the search input

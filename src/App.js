@@ -11,7 +11,7 @@ import {
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
 import HomePage from './UI-components/HomePage/HomePage';
 import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySearchResults';
-import './features/searchResults';
+import './features/searchResults/searchResults';
 import './features/webPlayer/webPlayer';
 
 const App = () => {

@@ -9,7 +9,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     const token = accessToken;
     const player = new window.Spotify.Player({
         name: 'Moods Player',
-        getOAuthToken: cb => { cb(token); }
+        getOAuthToken: (streamTrackUsingToken) => {
+          streamTrackUsingToken(token)
+        }
         });
     
         // Error handling
@@ -30,7 +32,9 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         player.addListener('not_ready', ({ device_id }) => {
         console.log('Device ID has gone offline', device_id);
         });
-    
+
         // Connect to the player!
         player.connect();
+          
 };
+
