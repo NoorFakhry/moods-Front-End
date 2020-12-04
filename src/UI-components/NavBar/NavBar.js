@@ -1,6 +1,6 @@
 import React, {Fragment, useState} from 'react';
 import {useDispatch} from 'react-redux';
-import {Link} from 'react-router-dom';
+import {Link, Redirect, Route, Switch, BrowserRouter as Router} from 'react-router-dom';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
@@ -12,7 +12,21 @@ const NavBar = () => {
     // create an inner state for the search input
     // and make it respond to user typing
     const [ searchInput, setSearchInput ] = useState( '' );
-    const onSearchChange = e => setSearchInput( e.target.value );
+    const onSearchChange = (e) => {
+        <Router>
+        <Route>
+        <Redirect to={
+            {
+                pathname: "/searchResults",
+                
+            }
+        } />
+   </Route>
+   </Router>
+        setSearchInput( e.target.value );
+        dispatch( getSearchResults( searchInput ) );
+        redirectToSearchResults()
+    }
     const dispatch = useDispatch();
     const onSearchButtonClick = () => {
         if( searchInput ) {
@@ -35,18 +49,28 @@ const NavBar = () => {
         }
     }
 
+    const redirectToSearchResults = () => {
+        if(searchInput) {
+            return <Switch>
+                <Redirect to="/searchResults"></Redirect>
+            </Switch>
+                
+        }
+    }
+
     return(
         <Fragment>
-            <Navbar bg="primary" variant="dark">
-                <Navbar.Brand href="#home">Moods</Navbar.Brand>
-                <Nav className="mr-auto">
-                </Nav>
-                <Form inline>
-                    <FormControl type="text" placeholder="Search" className="mr-sm-2"
-                    onChange = {onSearchChange} />
-                    {linkToSearchResults()}
-                </Form>
-            </Navbar>
+                <Navbar bg="primary" variant="dark">
+                    <Navbar.Brand href="#home">Moods</Navbar.Brand>
+                    <Nav className="mr-auto">
+                    </Nav>
+                    <Form inline>
+                            <FormControl type="text" placeholder="Search" className="mr-sm-2"
+                            onChange = {onSearchChange} />
+                            {linkToSearchResults()}
+                            
+                    </Form>
+                </Navbar>
         </Fragment>
     )
 };
