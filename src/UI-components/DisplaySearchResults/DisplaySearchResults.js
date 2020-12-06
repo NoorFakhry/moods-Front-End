@@ -70,7 +70,6 @@ const DisplaySearchResults = () => {
 
     return (
         <Fragment>
-            <NavBar/>
             {displaySearchResults()}
         </Fragment>
     )

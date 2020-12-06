@@ -6,6 +6,7 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import DisplaySearchResults from '../DisplaySearchResults/DisplaySearchResults';
 import {getSearchResults} from '../../features/searchResults/searchResults';
 
 const NavBar = () => {
@@ -13,19 +14,8 @@ const NavBar = () => {
     // and make it respond to user typing
     const [ searchInput, setSearchInput ] = useState( '' );
     const onSearchChange = (e) => {
-        <Router>
-        <Route>
-        <Redirect to={
-            {
-                pathname: "/searchResults",
-                
-            }
-        } />
-   </Route>
-   </Router>
         setSearchInput( e.target.value );
         dispatch( getSearchResults( searchInput ) );
-        redirectToSearchResults()
     }
     const dispatch = useDispatch();
     const onSearchButtonClick = () => {
@@ -51,9 +41,7 @@ const NavBar = () => {
 
     const redirectToSearchResults = () => {
         if(searchInput) {
-            return <Switch>
-                <Redirect to="/searchResults"></Redirect>
-            </Switch>
+            return <Redirect to="/searchResults"/>
                 
         }
     }
@@ -68,7 +56,7 @@ const NavBar = () => {
                             <FormControl type="text" placeholder="Search" className="mr-sm-2"
                             onChange = {onSearchChange} />
                             {linkToSearchResults()}
-                            
+                            {redirectToSearchResults()}
                     </Form>
                 </Navbar>
         </Fragment>

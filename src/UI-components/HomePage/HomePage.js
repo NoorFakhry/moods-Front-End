@@ -4,7 +4,6 @@ import NavBar from '../NavBar/NavBar';
 const HomePage = () => {
     return (
         <Fragment>
-            <NavBar/>
         </Fragment>
     )
 };
