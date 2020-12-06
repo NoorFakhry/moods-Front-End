@@ -18,9 +18,11 @@ const App = () => {
   return (
     <div className="App">
       <Router>
-        <Route exact path = "/" component={WelcomePage}></Route>
-        <Route exact path = "/homePage" component={HomePage}></Route>
-        <Route exact path = "/searchResults" component={DisplaySearchResults}></Route>
+        <Switch>
+          <Route exact path = "/" component={WelcomePage}></Route>
+          <Route exact path = "/homePage" component={HomePage}></Route>
+          <Route exact path = "/searchResults" component={DisplaySearchResults}></Route>
+        </Switch>
       </Router>
     </div>
   );

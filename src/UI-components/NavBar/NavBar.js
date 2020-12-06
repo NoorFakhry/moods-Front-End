@@ -12,14 +12,23 @@ const NavBar = () => {
     // create an inner state for the search input
     // and make it respond to user typing
     const [ searchInput, setSearchInput ] = useState( '' );
+    // change the searchInput state to whatever the user is entering
     const onSearchChange = e => setSearchInput( e.target.value );
+    // useDispatch middleware
+    // which will allow dispatching actions to the store
     const dispatch = useDispatch();
+    // when the user press the search button
+    // check if there is something in the search input
+    // then fetch the data from spotify
     const onSearchButtonClick = () => {
         if( searchInput ) {
             dispatch( getSearchResults( searchInput ) )
         }
     }
-    // link to searchResults page if the user enters something as input
+    // create the search button
+    // checks if the user entered something in search input
+    // if he did
+    // link to searchResults page after he press the search button
     const linkToSearchResults = () => {
         if(searchInput) {
             return <Link to="/searchResults">
@@ -38,7 +47,7 @@ const NavBar = () => {
     return(
         <Fragment>
             <Navbar bg="primary" variant="dark">
-                <Navbar.Brand href="#home">Moods</Navbar.Brand>
+                <Navbar.Brand>Moods</Navbar.Brand>
                 <Nav className="mr-auto">
                 </Nav>
                 <Form inline>
