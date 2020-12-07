@@ -11,7 +11,7 @@ const NavBar = () => {
     // create an inner state for the search input
     // and make it respond to user typing
     const [ searchInput, setSearchInput ] = useState( '' );
-
+  
     // change inner state
     // and get search results on input change
     const onSearchChange = (e) => {
