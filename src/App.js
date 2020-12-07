@@ -6,7 +6,8 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useLocation
+  useLocation,
+  Redirect
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
 import HomePage from './UI-components/HomePage/HomePage';
@@ -19,7 +20,7 @@ const App = () => {
   const location = useLocation();
   // hide the navbar on the welcome page
   const hideNavBarOnWelcomePage = () => {
-    if(location.pathname !== '/welcomePage') {
+    if(location.pathname !== '/') {
       return <NavBar/>
     }
   };
@@ -29,8 +30,8 @@ const App = () => {
           {/* this function will render NavBar ecxept if the app is on WelcomePage */}
           {hideNavBarOnWelcomePage()}
           <Switch>
-            <Route exact path = "/welcomePage" component = { WelcomePage } ></Route>
-            <Route exact path = "/" component = {HomePage} ></Route>
+            <Route exact path = "/" component = { WelcomePage } ></Route>
+            <Route exact path = "/homePage" component = {HomePage} ></Route>
             <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
           </Switch>
         </div>

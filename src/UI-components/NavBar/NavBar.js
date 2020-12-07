@@ -37,7 +37,7 @@ const NavBar = () => {
     return(
         <Fragment>
                 <Navbar bg="primary" variant="dark">
-                    <Link to="/">
+                    <Link to="/homePage">
                         <Navbar.Brand onClick={clearSearchInput}>Moods</Navbar.Brand>
                     </Link>
                     <Nav className="mr-auto">
