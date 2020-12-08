@@ -41,7 +41,6 @@ const NavBar = () => {
                         <Navbar.Brand onClick={clearSearchInput}>Moods</Navbar.Brand>
                     </Link>
                     <Nav className="mr-auto">
-                        <Link to="/BrowsePage" className="browse-link">Browse</Link>
                     </Nav>
                     <Form inline>
                             <FormControl type="text" placeholder="Search" className="mr-sm-2"
