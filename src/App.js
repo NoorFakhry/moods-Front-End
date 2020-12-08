@@ -1,4 +1,5 @@
 import './App.css';
+import './UI-components/NavBar/NavBar.css';
 import './UI-components/DisplaySearchResults/DisplaySearchResults.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
