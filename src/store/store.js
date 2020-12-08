@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import searchResultsReducer from '../features/searchResults/searchResults'; 
+import '../features/recommendations/recommendations';
 
 // create the store
 const store =  configureStore({
@@ -7,6 +8,8 @@ const store =  configureStore({
     reducer: {
       // create state for search results
       searchResults: searchResultsReducer
+      // create state for recommendations
+
     }
   });
 
