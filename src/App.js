@@ -8,7 +8,6 @@ import {
   Switch,
   Route,
   useLocation,
-  Redirect
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
 import HomePage from './UI-components/HomePage/HomePage';
@@ -16,8 +15,16 @@ import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySe
 import NavBar from './UI-components/NavBar/NavBar';
 import './features/searchResults/searchResults';
 import './features/webPlayer/webPlayer';
+import {useDispatch} from 'react-redux';
+import {getNewAlbumsReleases} from './features/recommendations/recommendations';
+
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  // get albums new releases when the app starts
+  dispatch(getNewAlbumsReleases());
+
   const location = useLocation();
   // hide the navbar on the welcome page
   const hideNavBarOnWelcomePage = () => {

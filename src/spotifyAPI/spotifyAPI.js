@@ -1,6 +1,6 @@
-import * as SpotifyApi from 'spotify-web-api-js';
+import SpotifyWebApi from 'spotify-web-api-js';
 import {accessToken, /*refreshToken*/} from '../tokens/tokens'
-const spotify = new SpotifyApi();
+const spotify = new SpotifyWebApi();
 spotify.setAccessToken(accessToken);
 
 export default spotify;
