@@ -1,9 +1,6 @@
 import { createEntityAdapter, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import * as SpotifyApi from 'spotify-web-api-js';
-import {accessToken, /*refreshToken*/} from '../../tokens/tokens'
-const spotify = new SpotifyApi();
+import spotify from '../../spotifyAPI/spotifyAPI';
 
-spotify.setAccessToken(accessToken);
 const errorMessage = {
     status: '401',
     message: 'sorry, try again!!'
