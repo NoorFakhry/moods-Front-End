@@ -16,16 +16,15 @@ import NavBar from './UI-components/NavBar/NavBar';
 import './features/searchResults/searchResults';
 import './features/webPlayer/webPlayer';
 import {useDispatch} from 'react-redux';
-import {getNewAlbumsReleases, getPlaylistCategoriesRecommendations} from './features/recommendations/recommendations';
+import {getNewAlbumsReleases} from './features/recommendations/recommendations';
 
 
 const App = () => {
+  
   const dispatch = useDispatch();
 
   // get albums new releases when the app starts
   dispatch(getNewAlbumsReleases());
-  // get playlists categories recommendations when the app starts
-  dispatch(getPlaylistCategoriesRecommendations());
 
   const location = useLocation();
   // hide the navbar on the welcome page

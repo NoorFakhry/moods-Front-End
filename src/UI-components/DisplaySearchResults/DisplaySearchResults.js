@@ -1,7 +1,6 @@
 import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {selectAllAlbums, selectAllArtists, selectAllTracks} from '../../features/searchResults/searchResults';
-import NavBar from '../NavBar/NavBar';
 
 const DisplaySearchResults = () => {
     // select all albums
