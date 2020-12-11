@@ -6,20 +6,23 @@ const errorMessage = {
     message: 'sorry, try again!!'
 };
 
-// get search results
-const getAlbums = (input) => {
-    const url = `https://api.spotify.com/v1/search?q=${input}&limit=50`;
-    const data = fetch(url, {
+// create async function that returns the search results for the user
+export const getSearchResults = createAsyncThunk( 'searchResults/getSearchResults', async ( input ) => {
+    if(input) {
+        const url = `https://api.spotify.com/v1/search?q=${input}&type=album%2Cartist%2Ctrack&limit=50`;
+    const response = await fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${accessToken}`
         }
-    }).then(res => res.json).then(data => data);
-};
-console.log(getAlbums('inna'))
-
-// ============================================
+    });
+    const data = await response.json();
+    console.log(data)
+    return data; 
+    }
+    
+} );
 
 // create adapter for albums results
 const albumsAdapter = createEntityAdapter({
@@ -97,7 +100,7 @@ const searchResults = createSlice({
         [ getSearchResults.pending ]: state => {
             state.albumsResults.status = 'Loading';
             state.artistsResults.status = 'Loading';
-            state.tracksResults.status = 'Loading'; 
+            state.tracksResults.status = 'Loading';
         },
         [ getSearchResults.fulfilled ]: ( state, action ) => {
             state.albumsResults.status = 'succeeded';
