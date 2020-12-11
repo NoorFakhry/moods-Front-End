@@ -1,16 +1,25 @@
 import { createEntityAdapter, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import spotify from '../../spotifyAPI/spotifyAPI';
+import {accessToken} from '../../tokens/tokens';
 
 const errorMessage = {
     status: '401',
     message: 'sorry, try again!!'
 };
 
-// create async function that returns the search results for the user
-export const getSearchResults = createAsyncThunk( 'searchResults/getSearchResults', async ( input ) => {
-    const data = await spotify.search( input, [ "artist", "album", "track" ] );
-    return data; 
-} );
+// get search results
+const getAlbums = (input) => {
+    const url = `https://api.spotify.com/v1/search?q=${input}&limit=50`;
+    const data = fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${accessToken}`
+        }
+    }).then(res => res.json).then(data => data);
+};
+console.log(getAlbums('inna'))
+
+// ============================================
 
 // create adapter for albums results
 const albumsAdapter = createEntityAdapter({
