@@ -8,9 +8,8 @@ const errorMessage = {
 
 // create async function that returns the search results for the user
 export const getSearchResults = createAsyncThunk( 'searchResults/getSearchResults', async ( input ) => {
-    if(input) {
         const url = `https://api.spotify.com/v1/search?q=${input}&type=album%2Cartist%2Ctrack&limit=50`;
-    const response = await fetch(url, {
+        const response = await fetch(url, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -18,10 +17,7 @@ export const getSearchResults = createAsyncThunk( 'searchResults/getSearchResult
         }
     });
     const data = await response.json();
-    console.log(data)
-    return data; 
-    }
-    
+    return data;
 } );
 
 // create adapter for albums results
@@ -97,20 +93,35 @@ const searchResults = createSlice({
     initialState: searchResultsInitialState,
     reducers:{},
     extraReducers:{
-        [ getSearchResults.pending ]: state => {
+        [ getSearchResults.pending ]: (state) => {
             state.albumsResults.status = 'Loading';
             state.artistsResults.status = 'Loading';
             state.tracksResults.status = 'Loading';
         },
         [ getSearchResults.fulfilled ]: ( state, action ) => {
-            state.albumsResults.status = 'succeeded';
-            state.artistsResults.status = 'succeeded';
-            state.tracksResults.status = 'succeeded';
-            albumsAdapter.setAll( state.albumsResults, action.payload.albums.items );
-            artistsAdapter.setAll( state.artistsResults, action.payload.artists.items );
-            tracksAdapter.setAll( state.tracksResults, action.payload.tracks.items );
-        },
-        [ getSearchResults.rejected ]: ( state, action ) => {
+            if(action.payload.albums && action.payload.tracks && action.payload.artists) {
+                state.albumsResults.status = 'Succeeded';
+                state.artistsResults.status = 'Succeeded';
+                state.tracksResults.status = 'Succeeded';
+                state.albumsResults.error = null;
+                state.artistsResults.error = null;
+                state.tracksResults.error = null;
+                albumsAdapter.setAll( state.albumsResults, action.payload.albums.items );
+                artistsAdapter.setAll( state.artistsResults, action.payload.artists.items );
+                tracksAdapter.setAll( state.tracksResults, action.payload.tracks.items );
+            } else if(action.payload.error) {
+                state.albumsResults.status = 'Failed';
+                state.artistsResults.status = 'Failed';
+                state.tracksResults.status = 'Failed';
+                state.albumsResults.error = action.payload.error;
+                state.artistsResults.error = action.payload.error;
+                state.tracksResults.error = action.payload.error;
+                albumsAdapter.setAll( state.albumsResults, {} );
+                artistsAdapter.setAll( state.artistsResults, {} );
+                tracksAdapter.setAll( state.tracksResults, {} );
+            }
+        }, 
+        [ getSearchResults.rejected ]: ( state ) => {
             state.albumsResults.status = 'Failed';
             state.artistsResults.status = 'Failed';
             state.tracksResults.status = 'Failed';
