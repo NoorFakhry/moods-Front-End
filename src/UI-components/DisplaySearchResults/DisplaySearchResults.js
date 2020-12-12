@@ -58,9 +58,11 @@ const DisplaySearchResults = () => {
                 {displayArtist()}
                 </div>
                 <div className="container">
+                    <h1>Albums</h1>
                     {displayAlbums}
                 </div>
                 <div className="container">
+                    <h1>Tracks</h1>
                     {displayTracks}
                 </div>
             </Fragment>
