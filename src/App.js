@@ -13,6 +13,7 @@ import WelcomePage from './UI-components/WelcomePage/WelcomePage';
 import HomePage from './UI-components/HomePage/HomePage';
 import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySearchResults';
 import NavBar from './UI-components/NavBar/NavBar';
+import SingleAlbumPage from './UI-components/SingleAlbumPage/SingleAlbumPage';
 import './features/searchResults/searchResults';
 import './features/webPlayer/webPlayer';
 import {useDispatch} from 'react-redux';
@@ -42,6 +43,7 @@ const App = () => {
             <Route exact path = "/" component = { WelcomePage } ></Route>
             <Route exact path = "/homePage" component = {HomePage} ></Route>
             <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
+            <Route exact path = "/searchResults/album/:albumId" component = {SingleAlbumPage}></Route>
           </Switch>
         </div>
       </Router>

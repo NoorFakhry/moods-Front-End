@@ -1,8 +1,10 @@
 import React, {Fragment} from 'react';
-import {useSelector} from 'react-redux';
-import {selectAllAlbums, selectAllArtists, selectAllTracks} from '../../features/searchResults/searchResults';
+import {useSelector, useDispatch} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {selectAllAlbums, selectAllArtists, selectAllTracks, getTracksForCertainAlbum} from '../../features/searchResults/searchResults';
 
 const DisplaySearchResults = () => {
+    const dispatch = useDispatch();
     // select all albums
     const albums = useSelector( selectAllAlbums );
     // select all artists
@@ -14,7 +16,7 @@ const DisplaySearchResults = () => {
 
     // display artist
     const displayArtist = () => {
-        if(mainArtist) {
+        try {
             return (
                 <div key = { mainArtist.id } >
                     <img src = { mainArtist.images[1].url } />
@@ -24,16 +26,25 @@ const DisplaySearchResults = () => {
                     <p>Artist</p>
                 </div>
             );
-        };
+        } catch(err) {
+            console.log(err);
+        }
     }
+    
     
     // display albums
     const displayAlbums = albums.map( album => {
+        // when the user clicks on certain album
+        const onAlbumButtonClick = () => {
+            dispatch(getTracksForCertainAlbum(album.id));
+        };
         return (
                 <div key = { album.id } >
                     <img src = { album.images[1].url } />
                     <h4>
-                        <a href = { album.external_urls.spotify } > { album.name } </a>
+                        <button onClick={onAlbumButtonClick}>
+                            <Link to = {`searchResults/album/${album.id}`} > { album.name } </Link>
+                        </button>
                     </h4>
                     <h4> { album.artists[0].name } </h4>
                 </div>

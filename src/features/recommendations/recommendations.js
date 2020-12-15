@@ -38,7 +38,8 @@ const albumsNewReleasesSelectors = albumsNewReleasesAdapter.getSelectors( state 
 // create selectors for the albums new releases
 // to be able to use them in any of the UI components
 export const {
-    selectAll: selectAllAlbumsNewReleases
+    selectAll: selectAllAlbumsNewReleases,
+    selectById: selectNewAlbumReleaseById
 } = albumsNewReleasesSelectors;
 // =================================================
 
