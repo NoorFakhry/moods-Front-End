@@ -1,26 +1,23 @@
-import { createEntityAdapter, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import {accessToken} from '../../tokens/tokens';
+import { createAsyncThunk, createEntityAdapter, createSlice } from '@reduxjs/toolkit';
+import {getNewAlbumsReleases, getTracksForCertainAlbum} from '../../spotify_api/spotify_api';
 
 const errorMessage = {
     status: '401',
     message: 'sorry, try again!!'
 };
 
+// create function that returns album tracks if the user press on certain album from recommendations
+export const getTracksForCertainAlbumFromAlbumsNewReleases = createAsyncThunk('recommendations, getTracksForCertainAlbumFromAlbumsNewReleases', (albumId) => {
+    return getTracksForCertainAlbum(albumId);
+});
+
+// create function that gets albums new releases from spotify when the app starts
+export const getNewAlbumsReleasesWhenAppStarts = createAsyncThunk('recommendations,getNewAlbumsReleasesWhenAppStarts', () => {
+    return getNewAlbumsReleases();
+});
+
 // logic for creating state for albums new releases
 // ===============================================
-// create async function that returns albums new releases 
-export const getNewAlbumsReleases = createAsyncThunk( 'recommendations/getNewReleases', async () => {
-    const url = 'https://api.spotify.com/v1/browse/new-releases?limit=50&offset=5';
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        }
-    });
-    const data = await response.json();
-    return data.albums.items;
-} );
 
 // create adapter for albums new releases results
 const albumsNewReleasesAdapter = createEntityAdapter({
@@ -55,18 +52,34 @@ const recommendations = createSlice({
     reducers:{},
     extraReducers: {
         // action creators for getting new albums releases
-        [ getNewAlbumsReleases.pending ]: state => {
+        [ getNewAlbumsReleasesWhenAppStarts.pending ]: state => {
             state.albumsNewReleases.status = 'Loading';
         },
-        [ getNewAlbumsReleases.fulfilled ]: ( state, action ) => {
+        [ getNewAlbumsReleasesWhenAppStarts.fulfilled ]: ( state, action ) => {
             state.albumsNewReleases.status = 'succeeded';
             albumsNewReleasesAdapter.setAll( state.albumsNewReleases, action.payload );
         },
-        [ getNewAlbumsReleases.rejected ]: ( state, action ) => {
+        [ getNewAlbumsReleasesWhenAppStarts.rejected ]: ( state, action ) => {
             state.albumsNewReleases.status = 'Failed';
             state.albumsNewReleases.error = errorMessage;
         },
         // ==================================================
+
+        // action creators for getTracksForCertainAlbum function
+        [getTracksForCertainAlbumFromAlbumsNewReleases.fulfilled]: (state, action) => {
+        // get the album id from the returned data
+        const albumId = action.payload.id;
+        // get the tracks from the returned data
+        const tracks = action.payload.items;
+        try{
+            // check if the state has an album with the same id
+            state.albumsNewReleases.entities[albumId].tracks = tracks;
+            console.log('Tracks =>',state.albumsNewReleases.entities[albumId].tracks);
+        } catch(err) {
+            console.log(err);
+            console.log(action.payload.error);
+        }
+    }
     }
 });
 

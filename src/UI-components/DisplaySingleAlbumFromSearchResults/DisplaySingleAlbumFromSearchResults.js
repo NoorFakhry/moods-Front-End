@@ -5,7 +5,7 @@ import {selectAlbumById} from '../../features/searchResults/searchResults';
 import {selectAllAlbumsNewReleases} from '../../features/recommendations/recommendations';
 
 
-const SingleAlbumPage = () => {
+const DisplaySingleAlbumFromSearchResults = () => {
     const params = useParams();
     // extract the album id
     const {albumId} = params;
@@ -64,4 +64,4 @@ const SingleAlbumPage = () => {
     )
 };
 
-export default SingleAlbumPage;
+export default DisplaySingleAlbumFromSearchResults;

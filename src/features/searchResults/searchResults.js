@@ -1,45 +1,20 @@
 import { createEntityAdapter, createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { stat } from 'fs';
-import {accessToken} from '../../tokens/tokens';
+import {getSearchResults, getTracksForCertainAlbum} from '../../spotify_api/spotify_api';
 
 const errorMessage = {
     status: '401',
     message: 'sorry, try again!!'
 };
 
-// create getters from spotify API
-// ==============================
+// create function that returns search results for whatever the user enters in input field
+export const getSearchResultsWhileSearching = createAsyncThunk('searchResults,getSearchResultsWhileSearching', (input) => {
+    return getSearchResults(input);
+});
 
-// create async function that returns album tracks if the user press on certain album
-export const getTracksForCertainAlbum = createAsyncThunk('searchResults/getTracksForCertainAlbum', async (albumId) => {
-    const albumUrl = `https://api.spotify.com/v1/albums/${albumId}/tracks?limit=50&offset=0`;
-    const response = await fetch(albumUrl,{
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        }
-    } );
-    const tracksForThisAlbum = await response.json();
-    tracksForThisAlbum.id = albumId;
-    console.log(tracksForThisAlbum);
-    return tracksForThisAlbum;
-}) 
-
-
-// create async function that returns the search results for the user
-export const getSearchResults = createAsyncThunk( 'searchResults/getSearchResults', async ( input ) => {
-        const url = `https://api.spotify.com/v1/search?q=${input}&type=album%2Cartist%2Ctrack&limit=50&offset=0`;
-        const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${accessToken}`
-        }
-    });
-    const data = await response.json();
-    return data;
-} );
+// create function that returns album tracks if the user press on certain album from search results
+export const getTracksForCertainAlbumFromSearchResults = createAsyncThunk('searchResults, getTracksForCertainAlbumFromSearchResults', (albumId) => {
+    return getTracksForCertainAlbum(albumId);
+});
 
 // create adapter for albums results
 const albumsAdapter = createEntityAdapter({
@@ -116,13 +91,13 @@ const searchResults = createSlice({
     reducers:{},
     extraReducers:{
         // action creators for getSearchResults function
-        [ getSearchResults.pending ]: (state) => {
+        [ getSearchResultsWhileSearching.pending ]: (state) => {
             state.albumsResults.status = 'Loading';
             state.artistsResults.status = 'Loading';
             state.tracksResults.status = 'Loading';
         },
-        [ getSearchResults.fulfilled ]: ( state, action ) => {
-            if(action.payload.albums && action.payload.tracks && action.payload.artists) {
+        [ getSearchResultsWhileSearching.fulfilled ]: ( state, action ) => {
+            try{
                 state.albumsResults.status = 'Succeeded';
                 state.artistsResults.status = 'Succeeded';
                 state.tracksResults.status = 'Succeeded';
@@ -132,7 +107,7 @@ const searchResults = createSlice({
                 albumsAdapter.setAll( state.albumsResults, action.payload.albums.items );
                 artistsAdapter.setAll( state.artistsResults, action.payload.artists.items );
                 tracksAdapter.setAll( state.tracksResults, action.payload.tracks.items );
-            } else if(action.payload.error) {
+            } catch(err) {
                 state.albumsResults.status = 'Failed';
                 state.artistsResults.status = 'Failed';
                 state.tracksResults.status = 'Failed';
@@ -144,7 +119,7 @@ const searchResults = createSlice({
                 tracksAdapter.setAll( state.tracksResults, {} );
             }
         }, 
-        [ getSearchResults.rejected ]: ( state ) => {
+        [ getSearchResultsWhileSearching.rejected ]: ( state ) => {
             state.albumsResults.status = 'Failed';
             state.artistsResults.status = 'Failed';
             state.tracksResults.status = 'Failed';
@@ -155,16 +130,18 @@ const searchResults = createSlice({
         // =============================================
 
         // action creators for getTracksForCertainAlbum function
-        [getTracksForCertainAlbum.fulfilled]: (state, action) => {
+        [getTracksForCertainAlbumFromSearchResults.fulfilled]: (state, action) => {
             // get the album id from the returned data
             const albumId = action.payload.id;
             // get the tracks from the returned data
             const tracks = action.payload.items;
+            try{
             // check if the state has an album with the same id
-            if(state.albumsResults.entities.hasOwnProperty(albumId)) {
-                state.albumsResults.entities[albumId].tracks = tracks;
-                console.log('Tracks =>',state.albumsResults.entities[albumId].tracks)
-            }
+            state.albumsResults.entities[albumId].tracks = tracks;
+            console.log('Tracks =>',state.albumsResults.entities[albumId].tracks);
+            } catch(err) {
+                console.log(action.payload.error);
+            }  
         }
     }
 });

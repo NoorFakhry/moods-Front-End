@@ -5,7 +5,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import {getSearchResults} from '../../features/searchResults/searchResults';
+import {getSearchResultsWhileSearching} from '../../features/searchResults/searchResults';
 
 const NavBar = () => {
     // create an inner state for the search input
@@ -16,12 +16,7 @@ const NavBar = () => {
     // and get search results on input change
     const onSearchChange = (e) => {
         setSearchInput( e.target.value );
-        dispatch( getSearchResults( searchInput ) );
-    }
-
-    // clear search input helper function
-    const clearSearchInput = () => {
-        setSearchInput('');
+        dispatch( getSearchResultsWhileSearching( searchInput ) );
     }
 
     const dispatch = useDispatch();

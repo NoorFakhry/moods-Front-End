@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {selectAllAlbums, selectAllArtists, selectAllTracks, getTracksForCertainAlbum} from '../../features/searchResults/searchResults';
+import {selectAllAlbums, selectAllArtists, selectAllTracks, getTracksForCertainAlbumFromSearchResults} from '../../features/searchResults/searchResults';
 
 const DisplaySearchResults = () => {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const DisplaySearchResults = () => {
     const displayAlbums = albums.map( album => {
         // when the user clicks on certain album
         const onAlbumButtonClick = () => {
-            dispatch(getTracksForCertainAlbum(album.id));
+            dispatch(getTracksForCertainAlbumFromSearchResults(album.id));
         };
         return (
                 <div key = { album.id } >

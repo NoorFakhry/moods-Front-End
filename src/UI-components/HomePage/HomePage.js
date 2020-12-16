@@ -1,8 +1,7 @@
 import React, {Fragment} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {getTracksForCertainAlbum} from '../../features/searchResults/searchResults';
-import {selectAllAlbumsNewReleases} from '../../features/recommendations/recommendations';
+import {selectAllAlbumsNewReleases, getTracksForCertainAlbumFromAlbumsNewReleases} from '../../features/recommendations/recommendations';
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -16,13 +15,13 @@ const HomePage = () => {
             renderedAlbums = newAlbumReleases.map(album => {
                 // when the user clicks on certain album
                 const onAlbumButtonClick = () => {
-                    dispatch(getTracksForCertainAlbum(album.id));
+                    dispatch(getTracksForCertainAlbumFromAlbumsNewReleases(album.id));
                 };
                 return (
                         <div key = {album.id}>
                             <img alt = "album thumbnail" src={album.images[1].url}/>
                             <button onClick={onAlbumButtonClick}>
-                                <Link to = {`searchResults/album/${album.id}`} > { album.name } </Link>
+                                <Link to = {`albumsNewReleases/album/${album.id}`} > { album.name } </Link>
                             </button>
                             <h5> {album.artists[0].name} </h5>
                         </div>
