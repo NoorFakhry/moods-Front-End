@@ -14,6 +14,7 @@ import HomePage from './UI-components/HomePage/HomePage';
 import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySearchResults';
 import NavBar from './UI-components/NavBar/NavBar';
 import DisplaySingleAlbumFromSearchResults from './UI-components/DisplaySingleAlbumFromSearchResults/DisplaySingleAlbumFromSearchResults';
+import DisplaySingleAlbumFromRecommendations from './UI-components/DisplaySingleAlbumFromRecommendations/DisplaySingleAlbumFromRecommendations';
 import './features/searchResults/searchResults';
 import './features/webPlayer/webPlayer';
 import {useDispatch} from 'react-redux';
@@ -44,6 +45,7 @@ const App = () => {
             <Route exact path = "/homePage" component = {HomePage} ></Route>
             <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
             <Route exact path = "/searchResults/album/:albumId" component = {DisplaySingleAlbumFromSearchResults}></Route>
+            <Route exact path = "/albumsNewReleases/album/:albumId" component = {DisplaySingleAlbumFromRecommendations}></Route>
           </Switch>
         </div>
       </Router>

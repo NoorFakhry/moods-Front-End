@@ -1,17 +1,18 @@
 import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
-import {selectAlbumById} from '../../features/searchResults/searchResults';
+import {selectAlbumByIdFromRecommendations} from '../../features/recommendations/recommendations';
 
 
-const DisplaySingleAlbumFromSearchResults = () => {
+const DisplaySingleAlbumFromRecommendations = () => {
     const params = useParams();
     // extract the album id
     const {albumId} = params;
     // select the album from search results
     const album = useSelector((state) => {
-        return selectAlbumById(state, albumId);
+        return selectAlbumByIdFromRecommendations(state, albumId);
     });
+    console.log('ALbum from recomm =>', album)
     // select the name of the artist that will be displayed
     let albumArtist;
     try {
@@ -63,4 +64,4 @@ const DisplaySingleAlbumFromSearchResults = () => {
     )
 };
 
-export default DisplaySingleAlbumFromSearchResults;
+export default DisplaySingleAlbumFromRecommendations;
