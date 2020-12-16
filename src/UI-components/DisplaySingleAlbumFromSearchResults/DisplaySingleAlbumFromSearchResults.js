@@ -53,9 +53,6 @@ const DisplaySingleAlbumFromSearchResults = () => {
             </div>
         )
     };
-
-    // select the album from new albums releases recommendations
-
     return (
         <Fragment>
             {displayAlbum()}

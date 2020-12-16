@@ -12,7 +12,6 @@ const DisplaySingleAlbumFromRecommendations = () => {
     const album = useSelector((state) => {
         return selectAlbumByIdFromRecommendations(state, albumId);
     });
-    console.log('ALbum from recomm =>', album)
     // select the name of the artist that will be displayed
     let albumArtist;
     try {
