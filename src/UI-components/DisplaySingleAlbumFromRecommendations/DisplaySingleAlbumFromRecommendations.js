@@ -8,7 +8,7 @@ const DisplaySingleAlbumFromRecommendations = () => {
     const params = useParams();
     // extract the album id
     const {albumId} = params;
-    // select the album from search results
+    // select the album from recommendations
     const album = useSelector((state) => {
         return selectAlbumByIdFromRecommendations(state, albumId);
     });
@@ -41,7 +41,7 @@ const DisplaySingleAlbumFromRecommendations = () => {
         return tracks
     };
 
-    // Display the album
+    // function that will display the album
     const displayAlbum = () => {
         return (
             <div>
@@ -54,8 +54,6 @@ const DisplaySingleAlbumFromRecommendations = () => {
             </div>
         )
     };
-
-    // select the album from new albums releases recommendations
 
     return (
         <Fragment>
