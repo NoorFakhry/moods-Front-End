@@ -28,6 +28,7 @@ const DisplaySearchResults = () => {
             );
         } catch(err) {
             console.log(err);
+            return <h1>not found</h1>
         }
     }
     
@@ -63,21 +64,28 @@ const DisplaySearchResults = () => {
 
     // display all search results
     const displaySearchResults = () => {
-        return (
-            <Fragment>
-                <div className="container">
-                {displayArtist()}
-                </div>
-                <div className="container">
-                    <h1>Albums</h1>
-                    {displayAlbums}
-                </div>
-                <div className="container">
-                    <h1>Tracks</h1>
-                    {displayTracks}
-                </div>
-            </Fragment>
-        )
+        try{
+            return (
+                <Fragment>
+                    <div className="container">
+                    {displayArtist()}
+                    </div>
+                    <div className="container">
+                        <h1>Albums</h1>
+                        {displayAlbums}
+                    </div>
+                    <div className="container">
+                        <h1>Tracks</h1>
+                        {displayTracks}
+                    </div>
+                </Fragment>
+            )
+        } catch(err) {
+            console.log(err);
+            return(
+                <h1>Can't find results</h1>
+            )
+        }
     }
 
     return (
