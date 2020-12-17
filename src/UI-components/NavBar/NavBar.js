@@ -5,9 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
-import {getSearchResultsWhileSearching} from '../../features/searchResults/searchResults';
+import {getSearchResultsWhileSearching, changeSearchInputLength, changeSearchInputValue} from '../../features/searchResults/searchResults';
 
 const NavBar = () => {
+    const dispatch = useDispatch();
+
     // create an inner state for the search input
     // and make it respond to user typing
     const [ searchInput, setSearchInput ] = useState( '' );
@@ -19,7 +21,8 @@ const NavBar = () => {
         dispatch( getSearchResultsWhileSearching( searchInput ) );
     }
 
-    const dispatch = useDispatch();
+    dispatch(changeSearchInputLength(searchInput.length));
+    dispatch(changeSearchInputValue(searchInput));
 
     // if the user types something in the search input
     // he will be taken to search results page

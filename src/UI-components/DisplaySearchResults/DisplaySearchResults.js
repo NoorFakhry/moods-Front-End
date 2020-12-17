@@ -18,6 +18,9 @@ const DisplaySearchResults = () => {
     const albumsStatus = useSelector(state => state.searchResults.albumsResults.status);
     const tracksStatus = useSelector(state => state.searchResults.tracksResults.status);
     const artistStatus = useSelector(state => state.searchResults.artistsResults.status);
+    // select search input length and value from the state
+    const searchInputLength = useSelector(state => state.searchResults.searchInput.length);
+    const searchInputValue = useSelector(state => state.searchResults.searchInput.value);
 
     // display artist
     const displayArtist = () => {
@@ -100,11 +103,12 @@ const DisplaySearchResults = () => {
         if( mainArtist === undefined
             && displayAlbums.length === 0
             && displayTracks.length === 0
+            && searchInputLength > 0
             && albumsStatus === 'Succeeded'
             && tracksStatus === 'Succeeded'
             && artistStatus === 'Succeeded') {
                 return(
-                    <h1>No Search Results</h1>
+                    <h1>No Search Results for {searchInputValue}</h1>
                 )
             }
     };

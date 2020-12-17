@@ -7,8 +7,9 @@ const errorMessage = {
 };
 
 // create state for searchInputLength
-const searchInputLength = {
-    value: 0
+const searchInput = {
+    length:0,
+    value: ''
 };
 
 // create function that returns search results for whatever the user enters in input field
@@ -84,17 +85,24 @@ export const {
 
 // initial state for the searchResults slice
 const searchResultsInitialState = {
+    searchInput,
     artistsResults,
     albumsResults,
     tracksResults,
-    searchInputLength
 };
 
 // create state for the search results
 const searchResults = createSlice({
     name: 'searchResults',
     initialState: searchResultsInitialState,
-    reducers:{},
+    reducers:{
+        changeSearchInputValue: (state, action) => {
+            state.searchInput.value = action.payload;
+        },
+        changeSearchInputLength: (state, action) => {
+            state.searchInput.length = action.payload;
+        }
+    },
     extraReducers:{
         // action creators for getSearchResults function
         [ getSearchResultsWhileSearching.pending ]: (state) => {
@@ -151,5 +159,8 @@ const searchResults = createSlice({
         }
     }
 });
+
+// export action creators
+export const {changeSearchInputLength, changeSearchInputValue} = searchResults.actions;
 
 export default searchResults.reducer;
