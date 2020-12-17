@@ -15,7 +15,7 @@ const NavBar = () => {
     // change inner state
     // and get search results on input change
     const onSearchChange = (e) => {
-        setSearchInput( e.target.value );
+        setSearchInput( escape(e.target.value) );
         dispatch( getSearchResultsWhileSearching( searchInput ) );
     }
 
