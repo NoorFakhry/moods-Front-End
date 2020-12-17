@@ -13,12 +13,18 @@ const DisplaySearchResults = () => {
     const mainArtist = artists[0];
     // select all tracks
     const tracks = useSelector( selectAllTracks );
+    // select status for
+    // albums, tracks and artist results
+    const albumsStatus = useSelector(state => state.searchResults.albumsResults.status);
+    const tracksStatus = useSelector(state => state.searchResults.tracksResults.status);
+    const artistStatus = useSelector(state => state.searchResults.artistsResults.status);
 
     // display artist
     const displayArtist = () => {
         try {
             return (
                 <div key = { mainArtist.id } >
+                    <h1>Artist</h1>
                     <img src = { mainArtist.images[1].url } />
                     <h4>
                         <a href = { mainArtist.external_urls.spotify } > { mainArtist.name } </a>
@@ -27,11 +33,9 @@ const DisplaySearchResults = () => {
                 </div>
             );
         } catch(err) {
-            console.log(err);
-            return <h1>not found</h1>
+            //console.log(err);
         }
     }
-    
     
     // display albums
     const displayAlbums = albums.map( album => {
@@ -51,6 +55,21 @@ const DisplaySearchResults = () => {
                 </div>
         );
     } );
+    
+    // check if there are any albums
+    const isThereAnyAlbumResults = () => {
+        if(displayAlbums.length > 0) return true;
+    };
+
+    // write "Albums" heading above albums results if there are any albums results
+    const displayAlbumsHeading = () => {
+        if(isThereAnyAlbumResults()) {
+            return (
+                <h1>Albums</h1>
+            );
+        }
+    };
+
     // display tracks
     const displayTracks = tracks.map( track => {
         return (
@@ -62,30 +81,53 @@ const DisplaySearchResults = () => {
         );
     } );
 
+    // check if there are any tracks
+    const isThereAnyTracksResults = () => {
+        if(displayTracks.length > 0) return true;
+    };
+
+    // write "Tracks" heading above tracks results if there are any tracks results
+    const displayTracksHeading = () => {
+        if(isThereAnyTracksResults()) {
+            return (
+                <h1>Tracks</h1>
+            );
+        }
+    };
+
+    // If there are no search results
+    // display a message to the user
+    const displayMessageIfThereAreNoResults = () => {
+        if( mainArtist === undefined
+            && displayAlbums.length === 0
+            && displayTracks.length === 0
+            && albumsStatus === 'Succeeded'
+            && tracksStatus === 'Succeeded'
+            && artistStatus === 'Succeeded') {
+                return(
+                    <h1>No Search Results</h1>
+                )
+            }
+    };
+
     // display all search results
     const displaySearchResults = () => {
-        try{
             return (
                 <Fragment>
                     <div className="container">
-                    {displayArtist()}
+                        {displayArtist()}
                     </div>
                     <div className="container">
-                        <h1>Albums</h1>
+                        {displayAlbumsHeading()}
                         {displayAlbums}
                     </div>
                     <div className="container">
-                        <h1>Tracks</h1>
+                        {displayTracksHeading()}
                         {displayTracks}
                     </div>
+                    {displayMessageIfThereAreNoResults()}
                 </Fragment>
             )
-        } catch(err) {
-            console.log(err);
-            return(
-                <h1>Can't find results</h1>
-            )
-        }
     }
 
     return (

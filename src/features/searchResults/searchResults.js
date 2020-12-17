@@ -23,7 +23,7 @@ const albumsAdapter = createEntityAdapter({
 
 // create state for albums results
 const albumsResults= albumsAdapter.getInitialState({
-    status: 'idle',
+    status: 'Idle',
     error: null
 });
 
@@ -44,7 +44,7 @@ const artistsAdapter = createEntityAdapter({
 
 // create state for artists results
 const artistsResults= artistsAdapter.getInitialState({
-    status: 'idle',
+    status: 'Idle',
     error: null
 });
 
@@ -64,7 +64,7 @@ const tracksAdapter = createEntityAdapter({
 
 // create state for tracks results
 const tracksResults= tracksAdapter.getInitialState({
-    status: 'idle',
+    status: 'Idle',
     error: null
 });
 
