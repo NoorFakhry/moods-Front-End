@@ -6,6 +6,11 @@ const errorMessage = {
     message: 'sorry, try again!!'
 };
 
+// create state for searchInputLength
+const searchInputLength = {
+    value: 0
+};
+
 // create function that returns search results for whatever the user enters in input field
 export const getSearchResultsWhileSearching = createAsyncThunk('searchResults,getSearchResultsWhileSearching', (input) => {
     return getSearchResults(input);
@@ -81,7 +86,8 @@ export const {
 const searchResultsInitialState = {
     artistsResults,
     albumsResults,
-    tracksResults
+    tracksResults,
+    searchInputLength
 };
 
 // create state for the search results

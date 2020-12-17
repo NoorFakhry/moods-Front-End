@@ -24,7 +24,6 @@ const DisplaySearchResults = () => {
         try {
             return (
                 <div key = { mainArtist.id } >
-                    <h1>Artist</h1>
                     <img src = { mainArtist.images[1].url } />
                     <h4>
                         <a href = { mainArtist.external_urls.spotify } > { mainArtist.name } </a>
