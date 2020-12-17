@@ -115,22 +115,24 @@ const DisplaySearchResults = () => {
 
     // display all search results
     const displaySearchResults = () => {
-            return (
-                <Fragment>
-                    <div className="container">
-                        {displayArtist()}
-                    </div>
-                    <div className="container">
-                        {displayAlbumsHeading()}
-                        {displayAlbums}
-                    </div>
-                    <div className="container">
-                        {displayTracksHeading()}
-                        {displayTracks}
-                    </div>
-                    {displayMessageIfThereAreNoResults()}
-                </Fragment>
-            )
+            while(searchInputLength > 0) {
+                return (
+                    <Fragment>
+                        <div className="container">
+                            {displayArtist()}
+                        </div>
+                        <div className="container">
+                            {displayAlbumsHeading()}
+                            {displayAlbums}
+                        </div>
+                        <div className="container">
+                            {displayTracksHeading()}
+                            {displayTracks}
+                        </div>
+                        {displayMessageIfThereAreNoResults()}
+                    </Fragment>
+                );
+            };
     }
 
     return (
