@@ -76,10 +76,16 @@ const DisplaySearchResults = () => {
 
     // display tracks
     const displayTracks = tracks.map( track => {
+        // when the user clicks on certain track
+        const onTrackButtonClick = () => {
+            generateTrackPlayBackWidget(track.id);
+        };
         return (
                 <div key = { track.id } >
                     <h4>
-                        <a href = { track.external_urls.spotify } > { track.name } </a>
+                    <button onClick={onTrackButtonClick}>
+                            <Link to = {`searchResults/track/${track.id}`} > { track.name } </Link>
+                    </button>
                     </h4>
                 </div>
         );

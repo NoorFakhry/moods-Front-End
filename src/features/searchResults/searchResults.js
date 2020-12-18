@@ -80,7 +80,8 @@ const tracksSelectors = tracksAdapter.getSelectors( state => state.searchResults
 // create selectors for the tracks
 // to be able to use them in any of the UI components
 export const {
-    selectAll: selectAllTracks
+    selectAll: selectAllTracks,
+    selectById: selectTrackById
 } = tracksSelectors;
 
 // initial state for the searchResults slice
