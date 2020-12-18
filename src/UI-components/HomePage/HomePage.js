@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {selectAllAlbumsNewReleases, getTracksForCertainAlbumFromAlbumsNewReleases} from '../../features/recommendations/recommendations';
+import {generateAlbumPlayBackWidget, generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 const HomePage = () => {
     const dispatch = useDispatch();
@@ -16,6 +17,7 @@ const HomePage = () => {
                 // when the user clicks on certain album
                 const onAlbumButtonClick = () => {
                     dispatch(getTracksForCertainAlbumFromAlbumsNewReleases(album.id));
+                    generateAlbumPlayBackWidget(album.id);
                 };
                 return (
                         <div key = {album.id}>
