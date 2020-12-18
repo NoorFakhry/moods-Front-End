@@ -2,7 +2,7 @@ import {accessToken} from '../../tokens/tokens';
 
 // import the webPlayer library from spotify api
 // directly to the DOM
-document.getElementById('web-player').setAttribute('src', 'https://sdk.scdn.co/spotify-player.js');
+//document.getElementById('web-player').setAttribute('src', 'https://sdk.scdn.co/spotify-player.js');
 
 // initialize the web player
 window.onSpotifyWebPlaybackSDKReady = () => {
