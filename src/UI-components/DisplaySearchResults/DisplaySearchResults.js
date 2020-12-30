@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {selectAllAlbums, selectAllArtists, selectAllTracks, getTracksForCertainAlbumFromSearchResults} from '../../features/searchResults/searchResults';
-import {generateAlbumPlayBackWidget, generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {generateTrackPlayBackWidget, removeALbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 const DisplaySearchResults = () => {
     const dispatch = useDispatch();
@@ -36,7 +36,7 @@ const DisplaySearchResults = () => {
                 </div>
             );
         } catch(err) {
-            //console.log(err);
+            console.log(err);
         }
     }
     
@@ -45,9 +45,9 @@ const DisplaySearchResults = () => {
         // when the user clicks on certain album
         const onAlbumButtonClick = () => {
             dispatch(getTracksForCertainAlbumFromSearchResults(album.id));
-            generateAlbumPlayBackWidget(album.id);
         };
-        return (
+        try{
+            return (
                 <div key = { album.id } >
                     <img src = { album.images[1].url } />
                     <h4>
@@ -58,6 +58,9 @@ const DisplaySearchResults = () => {
                     <h4> { album.artists[0].name } </h4>
                 </div>
         );
+        } catch(err) {
+            console.log(err);
+        }
     } );
     
     // check if there are any albums
@@ -79,14 +82,16 @@ const DisplaySearchResults = () => {
         // when the user clicks on certain track
         const onTrackButtonClick = () => {
             generateTrackPlayBackWidget(track.id);
+            removeALbumPlayBackWidget();
         };
         return (
                 <div key = { track.id } >
                     <h4>
-                    <button onClick={onTrackButtonClick}>
-                            <Link to = {`searchResults/track/${track.id}`} > { track.name } </Link>
-                    </button>
+                        { track.name }
                     </h4>
+                    <Link to = {`searchResults/track/${track.id}`} >
+                        <button onClick={onTrackButtonClick}>Play</button>
+                    </Link>
                 </div>
         );
     } );

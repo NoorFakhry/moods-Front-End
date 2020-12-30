@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit';
 import searchResultsReducer from '../features/searchResults/searchResults'; 
 import recommendationsReducer, {getNewAlbumsReleases} from '../features/recommendations/recommendations';
 
@@ -10,7 +10,13 @@ const store =  configureStore({
       searchResults: searchResultsReducer,
       // create state for recommendations
       recommendations: recommendationsReducer
-    }
+    },
+    // middlewares
+    middleware: getDefaultMiddleware => 
+      getDefaultMiddleware({
+        immutableCheck: false,
+        serializableCheck: false,
+      }),
   });
 // export the store
 export default store;

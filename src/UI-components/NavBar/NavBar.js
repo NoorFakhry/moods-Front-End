@@ -42,7 +42,7 @@ const NavBar = () => {
                     </Nav>
                     <Form inline>
                             <FormControl type="text" placeholder="Search" className="mr-sm-2"
-                            onChange = {onSearchChange} />
+                            onInput = {onSearchChange}/>
                             {redirectToSearchResults()}
                     </Form>
                 </Navbar>

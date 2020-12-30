@@ -2,6 +2,7 @@ import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumById} from '../../features/searchResults/searchResults';
+import {generateAlbumPlayBackWidget, removeTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 
 const DisplaySingleAlbumFromSearchResults = () => {
@@ -27,6 +28,14 @@ const DisplaySingleAlbumFromSearchResults = () => {
     try {
         albumName = album.name;
     } catch(err) {console.log(err)};
+
+    // when the user click on play full album button
+    // the album widget will be displayed 
+    // and current track widget will be removed
+    const onPlayFullAlbumButtonClick = () => {
+        generateAlbumPlayBackWidget(albumId);
+        removeTrackPlayBackWidget();
+    };
 
     // Display the tracks of the album
     const displayTracks = () => {
@@ -56,6 +65,9 @@ const DisplaySingleAlbumFromSearchResults = () => {
     return (
         <Fragment>
             {displayAlbum()}
+            <div className="container">
+                <button onClick={onPlayFullAlbumButtonClick}>Play Full Album</button>
+            </div>
         </Fragment>
     )
 };

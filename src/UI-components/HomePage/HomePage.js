@@ -17,7 +17,7 @@ const HomePage = () => {
                 // when the user clicks on certain album
                 const onAlbumButtonClick = () => {
                     dispatch(getTracksForCertainAlbumFromAlbumsNewReleases(album.id));
-                    generateAlbumPlayBackWidget(album.id);
+                    //generateAlbumPlayBackWidget(album.id);
                 };
                 return (
                         <div key = {album.id}>
