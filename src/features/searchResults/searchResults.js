@@ -44,9 +44,7 @@ export const {
 } = albumsSelectors;
 
 // create adapter for artists results
-const artistsAdapter = createEntityAdapter({
-    //sortComparer: ( a, b ) => b.popularity.localeCompare( a.popularity )
-});
+const artistsAdapter = createEntityAdapter({});
 
 // create state for artists results
 const artistsResults= artistsAdapter.getInitialState({
@@ -84,12 +82,22 @@ export const {
     selectById: selectTrackById
 } = tracksSelectors;
 
+// create adapter for playlists results
+const playlistsAdapter = createEntityAdapter({});
+
+// create state for playlists results
+const playlistsResults= playlistsAdapter.getInitialState({
+    status: 'Idle',
+    error: null
+});
+
 // initial state for the searchResults slice
 const searchResultsInitialState = {
     searchInput,
     artistsResults,
     albumsResults,
     tracksResults,
+    playlistsResults,
 };
 
 // create state for the search results
@@ -110,37 +118,46 @@ const searchResults = createSlice({
             state.albumsResults.status = 'Loading';
             state.artistsResults.status = 'Loading';
             state.tracksResults.status = 'Loading';
+            state.playlistsResults.status = 'Loading';
         },
         [ getSearchResultsWhileSearching.fulfilled ]: ( state, action ) => {
             try{
                 state.albumsResults.status = 'Succeeded';
                 state.artistsResults.status = 'Succeeded';
                 state.tracksResults.status = 'Succeeded';
+                state.playlistsResults.status = 'Succeeded';
                 state.albumsResults.error = null;
                 state.artistsResults.error = null;
                 state.tracksResults.error = null;
+                state.playlistsResults.error = null;
                 albumsAdapter.setAll( state.albumsResults, action.payload.albums.items );
                 artistsAdapter.setAll( state.artistsResults, action.payload.artists.items );
                 tracksAdapter.setAll( state.tracksResults, action.payload.tracks.items );
+                playlistsAdapter.setAll( state.playlistsResults, action.payload.playlists.items );
             } catch(err) {
                 state.albumsResults.status = 'Failed';
                 state.artistsResults.status = 'Failed';
                 state.tracksResults.status = 'Failed';
+                state.playlistsResults.status = 'Failed';
                 state.albumsResults.error = action.payload.error;
                 state.artistsResults.error = action.payload.error;
                 state.tracksResults.error = action.payload.error;
+                state.playlistsResults.error = action.payload.error;
                 albumsAdapter.setAll( state.albumsResults, {} );
                 artistsAdapter.setAll( state.artistsResults, {} );
                 tracksAdapter.setAll( state.tracksResults, {} );
+                playlistsAdapter.setAll( state.playlistsResults, {} );
             }
         }, 
         [ getSearchResultsWhileSearching.rejected ]: ( state ) => {
             state.albumsResults.status = 'Failed';
             state.artistsResults.status = 'Failed';
             state.tracksResults.status = 'Failed';
+            state.playlistsResults.status = 'Failed';
             state.albumsResults.error = errorMessage;
             state.artistsResults.error = errorMessage;
             state.tracksResults.error = errorMessage;
+            state.playlistsResults.error = errorMessage;
         },
         // =============================================
 

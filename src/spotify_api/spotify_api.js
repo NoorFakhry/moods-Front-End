@@ -5,7 +5,7 @@ import {accessToken} from '../tokens/tokens';
 
 // create async function that returns the search results for the user
 export const getSearchResults = async (input) => {
-  const url = `https://api.spotify.com/v1/search?q=${input}&type=album%2Cartist%2Ctrack&limit=50&offset=0`;
+  const url = `https://api.spotify.com/v1/search?q=${input}&type=album%2Cartist%2Ctrack%2Cplaylist&limit=50&offset=0`;
     const response = await fetch(url, {
     method: 'GET',
     headers: {
