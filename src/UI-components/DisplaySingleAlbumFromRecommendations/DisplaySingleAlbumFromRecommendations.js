@@ -2,7 +2,8 @@ import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumByIdFromRecommendations} from '../../features/recommendations/recommendations';
-
+import {generateAlbumPlayBackWidget, removeTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {generateTrackPlayBackWidget, removeALbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 const DisplaySingleAlbumFromRecommendations = () => {
     const params = useParams();
@@ -28,12 +29,30 @@ const DisplaySingleAlbumFromRecommendations = () => {
         albumName = album.name;
     } catch(err) {console.log(err)};
 
+    // when the user click on play full album button
+    // the album widget will be displayed 
+    // and current track widget will be removed
+    const onPlayFullAlbumButtonClick = () => {
+        generateAlbumPlayBackWidget(albumId);
+        removeTrackPlayBackWidget();
+    };
+
     // Display the tracks of the album
     const displayTracks = () => {
         let tracks;
         try {
             tracks = album.tracks.map(track => {
-                return (<h5>{track.name}</h5>)
+                // when the user clicks on certain track
+                const onTrackButtonClick = () => {
+                    generateTrackPlayBackWidget(track.id);
+                    removeALbumPlayBackWidget();
+                };
+                return (
+                    <div>
+                        <h5>{track.name}</h5>
+                        <button onClick={onTrackButtonClick}>Play</button>
+                    </div>
+                )
             });
         } catch(err) {console.log(err)};
 
@@ -57,6 +76,9 @@ const DisplaySingleAlbumFromRecommendations = () => {
     return (
         <Fragment>
             {displayAlbum()}
+            <div className="container">
+                <button onClick={onPlayFullAlbumButtonClick}>Play Full Album</button>
+            </div>
         </Fragment>
     )
 };

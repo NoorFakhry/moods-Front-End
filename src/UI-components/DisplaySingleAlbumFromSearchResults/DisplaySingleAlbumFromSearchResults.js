@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumById} from '../../features/searchResults/searchResults';
 import {generateAlbumPlayBackWidget, removeTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {generateTrackPlayBackWidget, removeALbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 
 const DisplaySingleAlbumFromSearchResults = () => {
@@ -42,7 +43,17 @@ const DisplaySingleAlbumFromSearchResults = () => {
         let tracks;
         try {
             tracks = album.tracks.map(track => {
-                return (<h5>{track.name}</h5>)
+                // when the user clicks on certain track
+                const onTrackButtonClick = () => {
+                    generateTrackPlayBackWidget(track.id);
+                    removeALbumPlayBackWidget();
+                };
+                return (
+                    <div>
+                        <h5>{track.name}</h5>
+                        <button onClick={onTrackButtonClick}>Play</button>
+                    </div>
+                )
             });
         } catch(err) {console.log(err)};
 

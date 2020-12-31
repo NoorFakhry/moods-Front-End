@@ -29,9 +29,7 @@ const DisplaySearchResults = () => {
             return (
                 <div key = { mainArtist.id } >
                     <img src = { mainArtist.images[1].url } />
-                    <h4>
-                        <a href = { mainArtist.external_urls.spotify } > { mainArtist.name } </a>
-                    </h4>
+                    <h4>{mainArtist.name}</h4>
                     <p>Artist</p>
                 </div>
             );
@@ -89,9 +87,7 @@ const DisplaySearchResults = () => {
                     <h4>
                         { track.name }
                     </h4>
-                    <Link to = {`searchResults/track/${track.id}`} >
-                        <button onClick={onTrackButtonClick}>Play</button>
-                    </Link>
+                    <button onClick={onTrackButtonClick}>Play</button>
                 </div>
         );
     } );

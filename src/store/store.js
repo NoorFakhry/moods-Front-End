@@ -12,11 +12,11 @@ const store =  configureStore({
       recommendations: recommendationsReducer
     },
     // middlewares
-    middleware: getDefaultMiddleware => 
-      getDefaultMiddleware({
-        immutableCheck: false,
-        serializableCheck: false,
-      }),
+    // middleware: getDefaultMiddleware => 
+    //   getDefaultMiddleware({
+    //     immutableCheck: false,
+    //     serializableCheck: false,
+    //   }),
   });
 // export the store
 export default store;

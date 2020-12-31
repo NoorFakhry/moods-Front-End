@@ -2,7 +2,7 @@ import './App.css';
 import './UI-components/NavBar/NavBar.css';
 import './UI-components/DisplaySearchResults/DisplaySearchResults.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React from "react";
+import React, {Fragment} from "react";
 import {
   BrowserRouter as Router,
   Switch,
@@ -15,7 +15,6 @@ import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySe
 import NavBar from './UI-components/NavBar/NavBar';
 import DisplaySingleAlbumFromSearchResults from './UI-components/DisplaySingleAlbumFromSearchResults/DisplaySingleAlbumFromSearchResults';
 import DisplaySingleAlbumFromRecommendations from './UI-components/DisplaySingleAlbumFromRecommendations/DisplaySingleAlbumFromRecommendations';
-import DisplaySingleTrackFromSearchResults from './UI-components/DisplaySingleTrackFromSearchResults/DisplaySingleTrackFromSearchResults';
 import TrackStreamingWidget from './UI-components/StreamingWidgets/TrackStreamingWidget';
 import AlbumStreamingWidget from './UI-components/StreamingWidgets/AlbumStreamingWidget';
 import './features/searchResults/searchResults';
@@ -38,6 +37,7 @@ const App = () => {
     }
   };
   return (
+    <Fragment>
       <Router>
         <div className="App">
           {/* this function will render NavBar ecxept if the app is on WelcomePage */}
@@ -48,12 +48,12 @@ const App = () => {
             <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
             <Route exact path = "/searchResults/album/:albumId" component = {DisplaySingleAlbumFromSearchResults}></Route>
             <Route exact path = "/albumsNewReleases/album/:albumId" component = {DisplaySingleAlbumFromRecommendations}></Route>
-            <Route exact path = "/searchResults/track/:trackId" component = {DisplaySingleTrackFromSearchResults}></Route>
           </Switch>
-          <TrackStreamingWidget />
-          <AlbumStreamingWidget />
         </div>
       </Router>
+      <TrackStreamingWidget />
+      <AlbumStreamingWidget />
+    </Fragment>
   );
 }
 
