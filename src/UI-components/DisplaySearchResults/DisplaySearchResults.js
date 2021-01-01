@@ -1,10 +1,11 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {selectAllAlbums, selectAllArtists, selectAllTracks, getTracksForCertainAlbumFromSearchResults} from '../../features/searchResults/searchResults';
 import {generateTrackPlayBackWidget, removeALbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 const DisplaySearchResults = () => {
+
     const dispatch = useDispatch();
     // select all albums
     const albums = useSelector( selectAllAlbums );
@@ -46,7 +47,7 @@ const DisplaySearchResults = () => {
         };
         try{
             return (
-                <div key = { album.id } >
+                <section key = { album.id } >
                     <img src = { album.images[1].url } />
                     <h4>
                         <button onClick={onAlbumButtonClick}>
@@ -54,7 +55,7 @@ const DisplaySearchResults = () => {
                         </button>
                     </h4>
                     <h4> { album.artists[0].name } </h4>
-                </div>
+                </section>
         );
         } catch(err) {
             console.log(err);
@@ -83,12 +84,12 @@ const DisplaySearchResults = () => {
             removeALbumPlayBackWidget();
         };
         return (
-                <div key = { track.id } >
+                <section key = { track.id } >
                     <h4>
                         { track.name }
                     </h4>
                     <button onClick={onTrackButtonClick}>Play</button>
-                </div>
+                </section>
         );
     } );
 

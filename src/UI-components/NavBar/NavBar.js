@@ -19,8 +19,8 @@ const NavBar = () => {
     const onSearchChange = (e) => {
         setSearchInput( escape(e.target.value) );
         dispatch( getSearchResultsWhileSearching( searchInput ) );
-    }
-
+    };
+    
     dispatch(changeSearchInputLength(searchInput.length));
     dispatch(changeSearchInputValue(searchInput));
 

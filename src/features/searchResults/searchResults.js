@@ -114,13 +114,13 @@ const searchResults = createSlice({
     },
     extraReducers:{
         // action creators for getSearchResults function
-        [ getSearchResultsWhileSearching.pending ]: (state) => {
+        [getSearchResultsWhileSearching.pending]: (state) => {
             state.albumsResults.status = 'Loading';
             state.artistsResults.status = 'Loading';
             state.tracksResults.status = 'Loading';
             state.playlistsResults.status = 'Loading';
         },
-        [ getSearchResultsWhileSearching.fulfilled ]: ( state, action ) => {
+        [getSearchResultsWhileSearching.fulfilled]: ( state, action ) => {
             try{
                 state.albumsResults.status = 'Succeeded';
                 state.artistsResults.status = 'Succeeded';
@@ -139,17 +139,24 @@ const searchResults = createSlice({
                 state.artistsResults.status = 'Failed';
                 state.tracksResults.status = 'Failed';
                 state.playlistsResults.status = 'Failed';
-                state.albumsResults.error = action.payload.error;
-                state.artistsResults.error = action.payload.error;
-                state.tracksResults.error = action.payload.error;
-                state.playlistsResults.error = action.payload.error;
+                if(action.payload.error) {
+                    state.albumsResults.error = action.payload.error;
+                    state.artistsResults.error = action.payload.error;
+                    state.tracksResults.error = action.payload.error;
+                    state.playlistsResults.error = action.payload.error;
+                } else {
+                    state.albumsResults.error = errorMessage;
+                    state.artistsResults.error = errorMessage;
+                    state.tracksResults.error = errorMessage;
+                    state.playlistsResults.error = errorMessage;
+                }
                 albumsAdapter.setAll( state.albumsResults, {} );
                 artistsAdapter.setAll( state.artistsResults, {} );
                 tracksAdapter.setAll( state.tracksResults, {} );
                 playlistsAdapter.setAll( state.playlistsResults, {} );
             }
         }, 
-        [ getSearchResultsWhileSearching.rejected ]: ( state ) => {
+        [getSearchResultsWhileSearching.rejected]: ( state ) => {
             state.albumsResults.status = 'Failed';
             state.artistsResults.status = 'Failed';
             state.tracksResults.status = 'Failed';
