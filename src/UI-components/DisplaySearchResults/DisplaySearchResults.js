@@ -1,14 +1,16 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {selectAllAlbums, selectAllArtists, selectAllTracks, getTracksForCertainAlbumFromSearchResults} from '../../features/searchResults/searchResults';
-import {generateTrackPlayBackWidget, removeALbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {selectAllAlbums, selectAllPlaylists, selectAllArtists, selectAllTracks, getTracksForCertainAlbumFromSearchResults} from '../../features/searchResults/searchResults';
+import {generateTrackPlayBackWidget, removeALbumPlayBackWidget, generatePlaylistPlayBackWidget, removePlaylistPlayBackWidget, removeTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 const DisplaySearchResults = () => {
 
     const dispatch = useDispatch();
     // select all albums
     const albums = useSelector( selectAllAlbums );
+    // select all playlists
+    const playlists = useSelector( selectAllPlaylists );
     // select all artists
     const artists = useSelector( selectAllArtists );
     // get the main artist
@@ -39,6 +41,20 @@ const DisplaySearchResults = () => {
         }
     }
     
+    // check if there are any albums
+    const isThereAnyAlbumResults = () => {
+        if(displayAlbums.length > 0) return true;
+    };
+
+    // write "Albums" heading above albums results if there are any albums results
+    const displayAlbumsHeading = () => {
+        if(isThereAnyAlbumResults()) {
+            return (
+                <h1>Albums</h1>
+            );
+        }
+    };
+
     // display albums
     const displayAlbums = albums.map( album => {
         // when the user clicks on certain album
@@ -61,36 +77,43 @@ const DisplaySearchResults = () => {
             console.log(err);
         }
     } );
-    
-    // check if there are any albums
-    const isThereAnyAlbumResults = () => {
-        if(displayAlbums.length > 0) return true;
+
+    // check if there are any playlists
+    const isThereAnyPlaylistsResults = () => {
+        if(displayPlaylists.length > 0) return true;
     };
 
-    // write "Albums" heading above albums results if there are any albums results
-    const displayAlbumsHeading = () => {
-        if(isThereAnyAlbumResults()) {
+    // write "Playlists" heading above playlists results if there are any playlists results
+    const displayPlaylistsHeading = () => {
+        if(isThereAnyPlaylistsResults()) {
             return (
-                <h1>Albums</h1>
+                <h1>Playlists</h1>
             );
         }
     };
 
-    // display tracks
-    const displayTracks = tracks.map( track => {
-        // when the user clicks on certain track
-        const onTrackButtonClick = () => {
-            generateTrackPlayBackWidget(track.id);
+    // display playlists
+    const displayPlaylists = playlists.map( playlist => {
+        // when the user clicks on certain playlist
+        const onPlaylistButtonClick = () => {
+            generatePlaylistPlayBackWidget(playlist.id);
             removeALbumPlayBackWidget();
+            removeTrackPlayBackWidget();
         };
-        return (
-                <section key = { track.id } >
-                    <h4>
-                        { track.name }
-                    </h4>
-                    <button onClick={onTrackButtonClick}>Play</button>
+        try{
+            return (
+                <section key = { playlist.id } >
+                    <img src = { playlist.images[0].url } />
+                    <h1>{playlist.name}</h1>
+                    <span>{playlist.tracks.total} Tracks</span>
+                    <div>
+                        <button onClick={onPlaylistButtonClick}>Play</button>
+                    </div>
                 </section>
         );
+        } catch(err) {
+            console.log(err);
+        }
     } );
 
     // check if there are any tracks
@@ -107,6 +130,24 @@ const DisplaySearchResults = () => {
         }
     };
 
+    // display tracks
+    const displayTracks = tracks.map( track => {
+        // when the user clicks on certain track
+        const onTrackButtonClick = () => {
+            generateTrackPlayBackWidget(track.id);
+            removeALbumPlayBackWidget();
+            removePlaylistPlayBackWidget();
+        };
+        return (
+                <section key = { track.id } >
+                    <h4>
+                        { track.name }
+                    </h4>
+                    <button onClick={onTrackButtonClick}>Play</button>
+                </section>
+        );
+    } );
+    
     // If there are no search results
     // display a message to the user
     const displayMessageIfThereAreNoResults = () => {
@@ -128,17 +169,21 @@ const DisplaySearchResults = () => {
             while(searchInputLength > 0) {
                 return (
                     <Fragment>
-                        <div className="container">
+                        <section className="container">
                             {displayArtist()}
-                        </div>
-                        <div className="container">
+                        </section>
+                        <section className="container">
                             {displayAlbumsHeading()}
                             {displayAlbums}
-                        </div>
-                        <div className="container">
+                        </section>
+                        <section className="container">
+                            {displayPlaylistsHeading()}
+                            {displayPlaylists}
+                        </section>
+                        <section className="container">
                             {displayTracksHeading()}
                             {displayTracks}
-                        </div>
+                        </section>
                         {displayMessageIfThereAreNoResults()}
                     </Fragment>
                 );

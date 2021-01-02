@@ -17,6 +17,7 @@ import DisplaySingleAlbumFromSearchResults from './UI-components/DisplaySingleAl
 import DisplaySingleAlbumFromRecommendations from './UI-components/DisplaySingleAlbumFromRecommendations/DisplaySingleAlbumFromRecommendations';
 import TrackStreamingWidget from './UI-components/StreamingWidgets/TrackStreamingWidget';
 import AlbumStreamingWidget from './UI-components/StreamingWidgets/AlbumStreamingWidget';
+import PlaylistStreamingWidget from './UI-components/StreamingWidgets/PlaylistStreamingWidget';
 import './features/searchResults/searchResults';
 import {useDispatch} from 'react-redux';
 import {getNewAlbumsReleasesWhenAppStarts} from './features/recommendations/recommendations';
@@ -38,21 +39,23 @@ const App = () => {
   };
   return (
     <Fragment>
-      <Router>
-        <div className="App">
-          {/* this function will render NavBar ecxept if the app is on WelcomePage */}
-          {hideNavBarOnWelcomePage()}
-          <Switch>
-            <Route exact path = "/" component = { WelcomePage } ></Route>
-            <Route exact path = "/homePage" component = {HomePage} ></Route>
-            <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
-            <Route exact path = "/searchResults/album/:albumId" component = {DisplaySingleAlbumFromSearchResults}></Route>
-            <Route exact path = "/albumsNewReleases/album/:albumId" component = {DisplaySingleAlbumFromRecommendations}></Route>
-          </Switch>
-        </div>
-      </Router>
-      <TrackStreamingWidget />
-      <AlbumStreamingWidget />
+      <div className="App">
+        <Router>
+            {/* this function will render NavBar ecxept if the app is on WelcomePage */}
+            {hideNavBarOnWelcomePage()}
+            <Switch>
+              <Route exact path = "/" component = { WelcomePage } ></Route>
+              <Route exact path = "/homePage" component = {HomePage} ></Route>
+              <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
+              <Route exact path = "/searchResults/album/:albumId" component = {DisplaySingleAlbumFromSearchResults}></Route>
+              <Route exact path = "/albumsNewReleases/album/:albumId" component = {DisplaySingleAlbumFromRecommendations}></Route>
+            </Switch>
+          
+        </Router>
+        <TrackStreamingWidget />
+        <AlbumStreamingWidget />
+        <PlaylistStreamingWidget />
+      </div>
     </Fragment>
   );
 }

@@ -2,8 +2,7 @@ import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumById} from '../../features/searchResults/searchResults';
-import {generateAlbumPlayBackWidget, removeTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
-import {generateTrackPlayBackWidget, removeALbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {generateAlbumPlayBackWidget, removeTrackPlayBackWidget,generateTrackPlayBackWidget, removeALbumPlayBackWidget, generatePlaylistPlayBackWidget, removePlaylistPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 
 const DisplaySingleAlbumFromSearchResults = () => {
@@ -36,6 +35,7 @@ const DisplaySingleAlbumFromSearchResults = () => {
     const onPlayFullAlbumButtonClick = () => {
         generateAlbumPlayBackWidget(albumId);
         removeTrackPlayBackWidget();
+        removePlaylistPlayBackWidget();
     };
 
     // Display the tracks of the album
@@ -47,6 +47,7 @@ const DisplaySingleAlbumFromSearchResults = () => {
                 const onTrackButtonClick = () => {
                     generateTrackPlayBackWidget(track.id);
                     removeALbumPlayBackWidget();
+                    removePlaylistPlayBackWidget();
                 };
                 return (
                     <div>

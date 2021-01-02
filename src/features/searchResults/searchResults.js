@@ -91,6 +91,15 @@ const playlistsResults= playlistsAdapter.getInitialState({
     error: null
 });
 
+// create selectors object for the playlists
+const playlistsSelectors = playlistsAdapter.getSelectors( state => state.searchResults.playlistsResults );
+
+// create selectors for the playlists
+// to be able to use them in any of the UI components
+export const {
+    selectAll: selectAllPlaylists,
+} = playlistsSelectors;
+
 // initial state for the searchResults slice
 const searchResultsInitialState = {
     searchInput,
