@@ -15,9 +15,6 @@ import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySe
 import NavBar from './UI-components/NavBar/NavBar';
 import DisplaySingleAlbumFromSearchResults from './UI-components/DisplaySingleAlbumFromSearchResults/DisplaySingleAlbumFromSearchResults';
 import DisplaySingleAlbumFromRecommendations from './UI-components/DisplaySingleAlbumFromRecommendations/DisplaySingleAlbumFromRecommendations';
-import TrackStreamingWidget from './UI-components/StreamingWidgets/TrackStreamingWidget';
-import AlbumStreamingWidget from './UI-components/StreamingWidgets/AlbumStreamingWidget';
-import PlaylistStreamingWidget from './UI-components/StreamingWidgets/PlaylistStreamingWidget';
 import './features/searchResults/searchResults';
 import {useDispatch} from 'react-redux';
 import {getNewAlbumsReleasesWhenAppStarts} from './features/recommendations/recommendations';
@@ -34,7 +31,7 @@ const App = () => {
   // hide the navbar on the welcome page
   const hideNavBarOnWelcomePage = () => {
     if(location.pathname !== '/') {
-      return <NavBar/>
+      return <NavBar className="sidenav"/>
     }
   };
   return (
@@ -52,9 +49,6 @@ const App = () => {
             </Switch>
           
         </Router>
-        <TrackStreamingWidget />
-        <AlbumStreamingWidget />
-        <PlaylistStreamingWidget />
       </div>
     </Fragment>
   );

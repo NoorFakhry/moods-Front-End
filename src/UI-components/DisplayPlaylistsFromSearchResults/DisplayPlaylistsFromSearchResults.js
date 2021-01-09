@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectAllPlaylists} from '../../features/searchResults/searchResults';
-import {removeALbumPlayBackWidget, generatePlaylistPlayBackWidget, removeTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {generatePlaylistPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 
 const DisplayPlayListsFromSearchResults = () => {

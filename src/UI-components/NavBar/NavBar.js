@@ -1,11 +1,9 @@
 import React, {Fragment, useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {Link, Redirect} from 'react-router-dom';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import Form from 'react-bootstrap/Form';
-import FormControl from 'react-bootstrap/FormControl';
+import Button from 'react-bootstrap/Button';
 import {getSearchResultsWhileSearching, changeSearchInputLength, changeSearchInputValue} from '../../features/searchResults/searchResults';
+import StreamingWidgets from '../StreamingWidget/StreamingWidgets';
 
 const NavBar = () => {
     const dispatch = useDispatch();
@@ -34,18 +32,15 @@ const NavBar = () => {
 
     return(
         <Fragment>
-                <Navbar bg="primary" variant="dark">
-                    <Link to="/homePage">
-                        <Navbar.Brand>Moods</Navbar.Brand>
-                    </Link>
-                    <Nav className="mr-auto">
-                    </Nav>
-                    <Form inline>
-                            <FormControl type="text" placeholder="Search" className="mr-sm-2"
-                            onInput = {onSearchChange}/>
-                            {redirectToSearchResults()}
-                    </Form>
-                </Navbar>
+                <div class="sidenav">
+                    <div>
+                        <Button variant="primary">Home</Button>
+                    </div>
+                    <div>
+                        <Button variant="danger">Search</Button>
+                    </div>
+                    <StreamingWidgets/>
+                </div>
         </Fragment>
     )
 };

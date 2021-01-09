@@ -2,8 +2,7 @@ import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumByIdFromRecommendations} from '../../features/recommendations/recommendations';
-import {generateAlbumPlayBackWidget, removeTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
-import {generateTrackPlayBackWidget, removeALbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {generateAlbumPlayBackWidget, generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 const DisplaySingleAlbumFromRecommendations = () => {
     const params = useParams();
@@ -34,7 +33,6 @@ const DisplaySingleAlbumFromRecommendations = () => {
     // and current track widget will be removed
     const onPlayFullAlbumButtonClick = () => {
         generateAlbumPlayBackWidget(albumId);
-        removeTrackPlayBackWidget();
     };
 
     // Display the tracks of the album
@@ -45,7 +43,6 @@ const DisplaySingleAlbumFromRecommendations = () => {
                 // when the user clicks on certain track
                 const onTrackButtonClick = () => {
                     generateTrackPlayBackWidget(track.id);
-                    removeALbumPlayBackWidget();
                 };
                 return (
                     <div>

@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumById} from '../../features/searchResults/searchResults';
-import {generateAlbumPlayBackWidget, removeTrackPlayBackWidget,generateTrackPlayBackWidget, removeALbumPlayBackWidget, generatePlaylistPlayBackWidget, removePlaylistPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import {generateAlbumPlayBackWidget,generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 
 
 const DisplaySingleAlbumFromSearchResults = () => {

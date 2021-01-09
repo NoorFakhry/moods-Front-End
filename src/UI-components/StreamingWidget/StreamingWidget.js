@@ -1,10 +1,10 @@
 import React from 'react';
 
-const AlbumStreamingWidget = () => {
+const StreamingWidget = () => {
     return(
         <div>
             <iframe 
-            id="album-widget"
+            id="streaming-widget"
             title="widget"  
             width="300" 
             height="380" 
@@ -16,4 +16,4 @@ const AlbumStreamingWidget = () => {
     )
 };
 
-export default AlbumStreamingWidget;
+export default StreamingWidget;
