@@ -45,7 +45,7 @@ const DisplaySingleAlbumFromRecommendations = () => {
                     generateTrackPlayBackWidget(track.id);
                 };
                 return (
-                    <div>
+                    <div key={track.id}>
                         <h5>{track.name}</h5>
                         <button onClick={onTrackButtonClick}>Play</button>
                     </div>

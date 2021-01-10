@@ -34,8 +34,6 @@ const DisplaySingleAlbumFromSearchResults = () => {
     // and current track widget will be removed
     const onPlayFullAlbumButtonClick = () => {
         generateAlbumPlayBackWidget(albumId);
-        removeTrackPlayBackWidget();
-        removePlaylistPlayBackWidget();
     };
 
     // Display the tracks of the album
@@ -46,8 +44,6 @@ const DisplaySingleAlbumFromSearchResults = () => {
                 // when the user clicks on certain track
                 const onTrackButtonClick = () => {
                     generateTrackPlayBackWidget(track.id);
-                    removeALbumPlayBackWidget();
-                    removePlaylistPlayBackWidget();
                 };
                 return (
                     <div>

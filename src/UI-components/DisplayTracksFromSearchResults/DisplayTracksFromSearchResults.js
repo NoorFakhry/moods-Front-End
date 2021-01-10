@@ -28,8 +28,6 @@ const DisplayTracksFromSearchResults = () => {
         // when the user clicks on certain track
         const onTrackButtonClick = () => {
             generateTrackPlayBackWidget(track.id);
-            removeALbumPlayBackWidget();
-            removePlaylistPlayBackWidget();
         };
         return (
                 <section key = { track.id } >

@@ -1,4 +1,5 @@
 import React from 'react';
+import './StreamingWidget.css';
 
 const StreamingWidget = () => {
     return(

@@ -29,8 +29,6 @@ const DisplayPlayListsFromSearchResults = () => {
         // when the user clicks on certain playlist
         const onPlaylistButtonClick = () => {
             generatePlaylistPlayBackWidget(playlist.id);
-            removeALbumPlayBackWidget();
-            removeTrackPlayBackWidget();
         };
         try{
             return (

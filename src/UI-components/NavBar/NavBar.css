@@ -38,4 +38,12 @@
     .sidenav a {font-size: 18px;}
   }
 
+  .sidebar-btn {
+    margin: 0 120px 45px -24px;
+  }
+
+  .icon {
+    color: white;
+    
+  }
   

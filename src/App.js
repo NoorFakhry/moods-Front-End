@@ -11,6 +11,7 @@ import {
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
 import HomePage from './UI-components/HomePage/HomePage';
+import SearchPage from './UI-components/SearchPage/SearchPage';
 import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySearchResults';
 import NavBar from './UI-components/NavBar/NavBar';
 import DisplaySingleAlbumFromSearchResults from './UI-components/DisplaySingleAlbumFromSearchResults/DisplaySingleAlbumFromSearchResults';
@@ -43,6 +44,7 @@ const App = () => {
             <Switch>
               <Route exact path = "/" component = { WelcomePage } ></Route>
               <Route exact path = "/homePage" component = {HomePage} ></Route>
+              <Route exact path = "/search" component = {SearchPage} ></Route>
               <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
               <Route exact path = "/searchResults/album/:albumId" component = {DisplaySingleAlbumFromSearchResults}></Route>
               <Route exact path = "/albumsNewReleases/album/:albumId" component = {DisplaySingleAlbumFromRecommendations}></Route>
