@@ -1,7 +1,21 @@
+import {token} from '../tokens/tokens';
+
+let accessToken = token;
+
+// generate new access token each 30 minutes
+const generateNewAccessToken = (() => {
+  const waitFor30Minutes = 1800000;
+  setInterval(() => {
+      fetch('http://localhost:8888/newAccessToken')
+          .then(res => res.json())
+          .then((data) => {
+              accessToken = data.accessToken;
+          })
+  }, waitFor30Minutes);
+})();
+
 // functions that get data from spotify
 // ====================================
-
-import {accessToken} from '../tokens/tokens';
 
 // create async function that returns the search results for the user
 export const getSearchResults = async (input) => {
@@ -29,7 +43,6 @@ export const getTracksForCertainAlbum = async (albumId) => {
     } );
     const tracksForThisAlbum = await response.json();
     tracksForThisAlbum.id = albumId;
-    console.log(tracksForThisAlbum);
     return tracksForThisAlbum;
 };
 
@@ -46,5 +59,3 @@ export const getNewAlbumsReleases = async () => {
     const data = await response.json();
     return data.albums.items;
 };
-
-//fetch('http://localhost:8888/refreshToken').then(res => res.json()).then(data => console.log(data.accessToken))

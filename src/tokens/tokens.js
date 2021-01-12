@@ -1,4 +1,4 @@
-// this helper function will obtain the tokens
+// this helper function will obtain the access token for the very first time
 // from the hash of the url
 // after the user gets redirected from the spotify accounts
 const getTokens = () => {
@@ -13,21 +13,5 @@ const getTokens = () => {
 
 // save the tokens
 const tokens = getTokens();
-// initialize access and refresh token variables
-export let accessToken;
-export let refreshToken;
 
-// if there are new tokens
-// store them in the local storage
-if(tokens.accessToken) {
-    localStorage.setItem('accessToken',tokens.accessToken );
-};
-
-if(tokens.refreshToken) {
-    localStorage.setItem('refreshToken',tokens.refreshToken );
-};
-
-// assign the access and refresh token variables
-// to the tokens from local storage
-accessToken = localStorage.getItem('accessToken');
-refreshToken = localStorage.getItem('refreshToken');
+export const token = tokens.accessToken;

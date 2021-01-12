@@ -21,8 +21,7 @@ import {getNewAlbumsReleasesWhenAppStarts} from './features/recommendations/reco
 import SearchBar from './UI-components/SearchBar/SearchBar';
 
 
-const App = () => {
-  
+const App = () => {  
   const dispatch = useDispatch();
 
   // get albums new releases when the app starts
