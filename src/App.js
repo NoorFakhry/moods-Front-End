@@ -7,7 +7,6 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  useLocation,
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
 import HomePage from './UI-components/HomePage/HomePage';
@@ -19,6 +18,7 @@ import DisplaySingleAlbumFromRecommendations from './UI-components/DisplaySingle
 import './features/searchResults/searchResults';
 import {useDispatch} from 'react-redux';
 import {getNewAlbumsReleasesWhenAppStarts} from './features/recommendations/recommendations';
+import SearchBar from './UI-components/SearchBar/SearchBar';
 
 
 const App = () => {
@@ -28,28 +28,37 @@ const App = () => {
   // get albums new releases when the app starts
   dispatch(getNewAlbumsReleasesWhenAppStarts());
 
-  const location = useLocation();
-  // hide the navbar on the welcome page
-  const hideNavBarOnWelcomePage = () => {
-    if(location.pathname !== '/') {
-      return <NavBar className="sidenav"/>
-    }
-  };
   return (
     <Fragment>
       <div className="App">
         <Router>
-            {/* this function will render NavBar ecxept if the app is on WelcomePage */}
-            {hideNavBarOnWelcomePage()}
             <Switch>
-              <Route exact path = "/" component = { WelcomePage } ></Route>
-              <Route exact path = "/homePage" component = {HomePage} ></Route>
-              <Route exact path = "/search" component = {SearchPage} ></Route>
-              <Route exact path = "/searchResults" component = { DisplaySearchResults } ></Route>
-              <Route exact path = "/searchResults/album/:albumId" component = {DisplaySingleAlbumFromSearchResults}></Route>
-              <Route exact path = "/albumsNewReleases/album/:albumId" component = {DisplaySingleAlbumFromRecommendations}></Route>
+              <Route exact path = "/" >
+                <WelcomePage/>
+              </Route>
+              <Route exact path = "/homePage">
+                <NavBar/>
+                <HomePage/>
+              </Route>
+              <Route exact path = "/search" >
+                <NavBar/>
+                <SearchBar/>
+                <SearchPage/>
+              </Route>
+              <Route exact path = "/search/:query" >
+                <NavBar/>
+                <SearchBar/>
+                <DisplaySearchResults/>
+              </Route>
+              <Route exact path = "/search/:query/album/:albumId">
+                <NavBar/>
+                <DisplaySingleAlbumFromSearchResults/>
+              </Route>
+              <Route exact path = "/albumsNewReleases/album/:albumId">
+                <NavBar/>
+                <DisplaySingleAlbumFromRecommendations/>
+              </Route>
             </Switch>
-          
         </Router>
       </div>
     </Fragment>

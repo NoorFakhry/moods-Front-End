@@ -46,3 +46,5 @@ export const getNewAlbumsReleases = async () => {
     const data = await response.json();
     return data.albums.items;
 };
+
+//fetch('http://localhost:8888/refreshToken').then(res => res.json()).then(data => console.log(data.accessToken))

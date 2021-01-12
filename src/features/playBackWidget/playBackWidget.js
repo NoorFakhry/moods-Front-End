@@ -12,3 +12,8 @@ export const generatePlaylistPlayBackWidget = (playlistId) => {
 export const generateTrackPlayBackWidget = (trackId) => {
     document.getElementById('streaming-widget').setAttribute('src', `https://open.spotify.com/embed/track/${trackId}`);
 };
+
+// generate and display playBack widget for any artist
+export const generateArtistPlayBackWidget = (artistId) => {
+    document.getElementById('streaming-widget').setAttribute('src', `https://open.spotify.com/embed/artist/${artistId}`);
+};
