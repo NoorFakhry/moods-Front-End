@@ -1,17 +1,18 @@
-import {token} from '../tokens/tokens';
+let accessToken;
 
-let accessToken = token;
+const generateNewAccessToken = async () => {
+  const response = await fetch('http://localhost:8888/newAccessToken');
+  const data = await response.json()
+  accessToken =  data.accessToken
+  return accessToken
+};
 
 // generate new access token each 30 minutes
-const generateNewAccessToken = (() => {
+const generateNewAccessTokenEvery30Minutes = (() => {
   const waitFor30Minutes = 1800000;
-  setInterval(() => {
-      fetch('http://localhost:8888/newAccessToken')
-          .then(res => res.json())
-          .then((data) => {
-              accessToken = data.accessToken;
-          })
-  }, 1000);
+  setInterval(async () => {
+      accessToken = await generateNewAccessToken();
+  }, waitFor30Minutes);
 })();
 
 // functions that get data from spotify
@@ -19,6 +20,7 @@ const generateNewAccessToken = (() => {
 
 // create async function that returns the search results for the user
 export const getSearchResults = async (input) => {
+  accessToken = await generateNewAccessToken();
   const url = `https://api.spotify.com/v1/search?q=${input}&type=album%2Cartist%2Ctrack%2Cplaylist&limit=50&offset=0`;
     const response = await fetch(url, {
     method: 'GET',
@@ -33,6 +35,7 @@ export const getSearchResults = async (input) => {
 
 // create async function that returns any album tracks if the user press on certain album
 export const getTracksForCertainAlbum = async (albumId) => {
+  accessToken = await generateNewAccessToken();
   const albumUrl = `https://api.spotify.com/v1/albums/${albumId}/tracks?limit=50&offset=0`;
     const response = await fetch(albumUrl,{
         method: 'GET',
@@ -48,6 +51,7 @@ export const getTracksForCertainAlbum = async (albumId) => {
 
 // create async function that returns albums new releases 
 export const getNewAlbumsReleases = async () => {
+  accessToken = await generateNewAccessToken();
   const url = 'https://api.spotify.com/v1/browse/new-releases?limit=50&offset=5';
     const response = await fetch(url, {
         method: 'GET',
