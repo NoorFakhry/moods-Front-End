@@ -3,7 +3,6 @@ import {useSelector,useDispatch} from 'react-redux';
 import {selectAllAlbumsNewReleases, getTracksForCertainAlbumFromAlbumsNewReleases} from '../../features/recommendations/recommendations';
 import {Link} from 'react-router-dom';
 
-
 const DisplayAlbumsNewReleasesFromRecommendations = () => {
 
     const dispatch = useDispatch();
@@ -49,10 +48,10 @@ const DisplayAlbumsNewReleasesFromRecommendations = () => {
 
     const showAlbumsNewReleases = () => {
         return (
-            <section className="container">
+            <Fragment>
                 {displayNewReleasesHeading()}
                 {displayAlbumsNewReleases()}
-            </section>
+            </Fragment>
         )
     };
 

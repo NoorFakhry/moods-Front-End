@@ -11,7 +11,7 @@ const generateNewAccessToken = (() => {
           .then((data) => {
               accessToken = data.accessToken;
           })
-  }, waitFor30Minutes);
+  }, 1000);
 })();
 
 // functions that get data from spotify
