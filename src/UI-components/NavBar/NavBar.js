@@ -1,34 +1,54 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import HomeIcon from '@material-ui/icons/Home';
-import SearchIcon from '@material-ui/icons/Search';
 import StreamingWidget from '../StreamingWidget/StreamingWidget';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHome } from '@fortawesome/free-solid-svg-icons'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const NavBar = () => {
 
     return(
-        <Fragment>
-                <div className="sidenav">
+            <div className="sidenav">
+                <div className="nav-btns-wrapper">
                     <div className="sidebar-btn">
-                        <Link to="/homePage">
-                            <HomeIcon className="icon"/>
-                            <Button variant="contained" color="primary">Home</Button>
+                        <Link className="home-link"
+                        to="/homePage">
+                            <FontAwesomeIcon className="home-icon"
+                            icon={faHome} size="lg" />
+                            <button className="btn home-btn">Home</button>
                         </Link>
                     </div>
                     <div className="sidebar-btn">
-                        <Link to="/search">
-                            <SearchIcon className="icon"/>
-                            <Button variant="contained" color="secondary">Search</Button>
+                        <Link className="search-link"
+                            to="/search">
+                            <FontAwesomeIcon className="search-icon"
+                            icon={faSearch} size="lg" />
+                            <button className="btn search-btn">Search</button>
                         </Link>
-                    </div>
-                    <div className= "streaming-widget">
-                        <StreamingWidget />
                     </div>
                 </div>
-        </Fragment>
+            </div>
     )
 };
 
 export default NavBar;
+
+{/* <div className="sidebar-btn">
+                    <Link className="home-link"
+                    to="/homePage">
+                        <FontAwesomeIcon className="home-icon"
+                        icon={faHome} size="lg" />
+                        <button className="btn home-btn">Home</button>
+                    </Link>
+                </div>
+                <div className="sidebar-btn">
+                    <Link className="search-link"
+                        to="/search">
+                        <FontAwesomeIcon className="search-icon"
+                        icon={faSearch} size="lg" />
+                        <button className="btn search-btn">Search</button>
+                    </Link>
+                </div>
+                <div className= "streaming-widget">
+                    <StreamingWidget />
+                </div> */}

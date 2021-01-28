@@ -1,13 +1,11 @@
+import './DisplayArtistFromSearchResults.css';
 import React, {Fragment} from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {selectAllArtists} from '../../features/searchResults/searchResults';
-import Button from '@material-ui/core/Button';
 import {generateArtistPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
-
 
 const DisplayArtistFromSearchResults = () => {
 
-    const dispatch = useDispatch();
     // select all playlists
     const artists = useSelector( selectAllArtists );
     // get the main artist
@@ -24,13 +22,13 @@ const DisplayArtistFromSearchResults = () => {
     const displayArtist = () => {
         try {
             return (
-                <div key = { mainArtist.id } >
+                <div className="searchresults-item"
+                 key = { mainArtist.id } >
                     <img src = { mainArtist.images[1].url } />
-                    <h4>{mainArtist.name}</h4>
-                    <p>Artist</p>
-                    <Button variant="contained" color="secondary"
-                    onClick={onPlayButton}
-                    >Play</Button>
+                    <h4 >{mainArtist.name}</h4>
+                    <p >Artist</p>
+                    <button className="btn"
+                     onClick={onPlayButton}>Play</button>
                 </div>
             );
         } catch(err) {
@@ -40,7 +38,7 @@ const DisplayArtistFromSearchResults = () => {
 
     const showArtistResults = () => {
         return(
-            <section className="container">
+            <section>
                 {displayArtist()}
             </section>
         )

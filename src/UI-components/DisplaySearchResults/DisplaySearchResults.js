@@ -1,3 +1,4 @@
+import './DisplaySearchResults.css'
 import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {selectAllAlbums, selectAllPlaylists, selectAllArtists, selectAllTracks} from '../../features/searchResults/searchResults';
@@ -51,11 +52,13 @@ const DisplaySearchResults = () => {
             while(searchInputLength > 0) {
                 return (
                     <Fragment>
-                        <DisplayArtistFromSearchResults/>
-                        <DisplayAlbumsFromSearchResults/>
-                        <DisplayPlaylistsFromSearchResults/>
-                        <DisplayTracksFromSearchResults/>
-                        {displayMessageIfThereAreNoResults()}
+                        <div className="searchresults-container">
+                            <DisplayArtistFromSearchResults className="searchresults-item"/>
+                            <DisplayAlbumsFromSearchResults className="searchresults-item"/>
+                            <DisplayPlaylistsFromSearchResults className="searchresults-item"/>
+                            <DisplayTracksFromSearchResults className="searchresults-item"/>
+                            {displayMessageIfThereAreNoResults()}
+                        </div>
                     </Fragment>
                 );
             };

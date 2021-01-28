@@ -1,7 +1,11 @@
-import React, {Fragment} from 'react';
+import './DisplayAlbumsNewReleasesFromRecommendations.css';
+import React from 'react';
 import {useSelector,useDispatch} from 'react-redux';
 import {selectAllAlbumsNewReleases, getTracksForCertainAlbumFromAlbumsNewReleases} from '../../features/recommendations/recommendations';
+import {generateAlbumPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 import {Link} from 'react-router-dom';
+import PlayButton from '../PlayButton/PlayButton';
+
 
 const DisplayAlbumsNewReleasesFromRecommendations = () => {
 
@@ -18,13 +22,32 @@ const DisplayAlbumsNewReleasesFromRecommendations = () => {
                 const onAlbumButtonClick = () => {
                     dispatch(getTracksForCertainAlbumFromAlbumsNewReleases(album.id));
                 };
+                const onPlayButtonClick = () => {
+                    generateAlbumPlayBackWidget(album.id)
+                }
+
+                const albumNameLen = () => {
+                   if(album.name.length > 12) {
+                       return `${album.name.substr(0, 12)}... `
+                   } else {
+                       return album.name
+                   }
+                };
                 return (
-                        <div key = {album.id}>
-                            <img alt = "album thumbnail" src={album.images[1].url}/>
-                            <button onClick={onAlbumButtonClick}>
-                                <Link to = {`albumsNewReleases/album/${album.id}`} > { album.name } </Link>
+                        <div
+                        key = {album.id}>
+                            <img 
+                            className="item-img"
+                            alt = "album thumbnail" 
+                            src={album.images[1].url}/>
+                            <button className="item-background"
+                            onClick={onAlbumButtonClick}>
+                                <Link className="item-name"
+                                to = {`albumsNewReleases/album/${album.id}`} > { albumNameLen() } </Link>
                             </button>
-                            <h5> {album.artists[0].name} </h5>
+                            <h5 className="artist-name"
+                            > {album.artists[0].name} </h5>
+                            <PlayButton onPlayButtonClick={onPlayButtonClick}/>
                         </div>
                 )
             });
@@ -32,33 +55,10 @@ const DisplayAlbumsNewReleasesFromRecommendations = () => {
         } 
     };
 
-    const isThereAnyNewAlumsReleases = () => {
-        if(newAlbumReleases.length > 0) {return true};
-    };
-
-    const displayNewReleasesHeading = () => {
-        if(isThereAnyNewAlumsReleases()) {
-            return(
-                <div>
-                    <h1>New Releases</h1>
-                </div>
-            )
-        }
-    };
-
-    const showAlbumsNewReleases = () => {
-        return (
-            <Fragment>
-                {displayNewReleasesHeading()}
-                {displayAlbumsNewReleases()}
-            </Fragment>
-        )
-    };
-
     return(
-        <Fragment>
-            {showAlbumsNewReleases()}
-        </Fragment>
+        <div className="content recentReleases-container">
+            {displayAlbumsNewReleases()}
+        </div>
     )
 
 };

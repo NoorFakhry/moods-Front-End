@@ -1,40 +1,159 @@
-.App {
-  text-align: center;
+.welcomePage-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  background-color: #0E0E0E;
+  justify-items: center;
+  height: 100vh;
+  padding: 10% ;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.btn {
+  background-color: #e43941 !important;
+  color: #fff !important;
+  transition: all .2s ease-in-out !important;
+  border-radius: 20px !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.content-header {
   color: white;
+  font-size: xxx-large ;
+  font-weight: 900 ;
+  text-transform: uppercase;
+  padding-top: 7px;
 }
 
-.App-link {
-  color: #61dafb;
+
+/* styles for items inside content */
+.item-name {
+  color: #e5e5e5;
+  font-weight: 900;
+  font-size: 20px;
+  text-transform: uppercase;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.item-name:hover {
+  color: #e5e5e5;
+  text-decoration: none;
+}
+
+.item-background {
+  background-color: #141414;
+  border-style: none;
+}
+
+.artist-name {
+  color: #e5e5e5;
+  font-size: 14px;
+  font-weight: lighter;
+}
+
+@media screen and (min-width: 940px) {
+  .homepage-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    grid-template-rows: 10% 74% 11% 5%;
+    grid-template-areas: 
+        "sidebar header"
+        "sidebar main"
+        "sidebar widget"
+        "sidebar footer";
   }
-  to {
-    transform: rotate(360deg);
+  
+  .sidenav {
+    grid-area: sidebar;
+    background-color: #0E0E0E;
+  }
+  
+  .header {
+    grid-area: header;
+    background-color: #141414;
+    padding-left: 10px;
+  }
+  
+  .content {
+    grid-area: main;
+    background-color: #141414;
+    padding-left: 10px;
+    overflow: auto;
+  }
+
+  .content::-webkit-scrollbar {
+    width: 1em;
+  }
+  
+  .content::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  
+  .content::-webkit-scrollbar-thumb {
+    background-color: #4a4a4a;
+    outline: 1px solid #575757;
+  }
+
+  .widget {
+    grid-area: widget;
+    width: 100%;
+    height: 100%;
+    background-color: #141414;
+    padding-top: 10px;
+  }
+  
+  .footer {
+    grid-area: footer;
+    background-color: #141414;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
   }
 }
 
 
+/* Smaller Devices */
+@media screen and (max-width: 939px) {
+  .homepage-container {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 10% 65% 20% 5%;
+    grid-template-areas: 
+        "header"
+        "main"
+        "sidebar"
+        "footer";
+  }
+  
+  .sidenav {
+    grid-area: sidebar;
+    background-color: #0E0E0E;
+    overflow: hidden;
+  }
+  
+  .header {
+    grid-area: header;
+    background-color: #141414;
+  }
+  
+  .content {
+    grid-area: main;
+    background-color: #141414;
+    overflow: auto;
+  }
+
+  .widget {
+
+  }
+  
+  .footer {
+    grid-area: footer;
+    background-color: #141414;
+    color: white;
+    font-size: 20px;
+    text-align: center;
+    padding-bottom: 5px;
+    padding-top: 5px;
+  }
+  
+}

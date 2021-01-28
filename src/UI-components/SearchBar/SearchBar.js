@@ -1,7 +1,10 @@
+import './SearchBar.css';
 import React, {Fragment,useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {getSearchResultsWhileSearching, changeSearchInputLength, changeSearchInputValue} from '../../features/searchResults/searchResults';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch } from '@fortawesome/free-solid-svg-icons'
 
 const SearchBar = () => {
 
@@ -30,14 +33,15 @@ const SearchBar = () => {
     }
     return(
         <Fragment>
-            <div className="searchbar">
-                <input 
-                type="text" 
-                placeholder="Search"
-                onInput={onSearchChange}
-                ></input>
-                {redirectToSearchResults()}
-            </div>
+                <div className="searchbar">
+                    <FontAwesomeIcon icon={faSearch} size="lg" />
+                    <input className="searchinput"
+                    type="text" 
+                    placeholder="Search"
+                    onInput={onSearchChange}
+                    ></input>
+                </div>
+               {redirectToSearchResults()}
         </Fragment>
     )
 };

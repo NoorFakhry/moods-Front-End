@@ -1,12 +1,8 @@
-body {
-    background-color: #0E0E0E;
-}
-
 .welcome-heading {
     color: #F9F9F9;
-    font-size: 50px;
+    font-size: 40px;
     font-family: 'Potta One', cursive;
-
+    font-weight: 900;
 }
 
 .moods {
@@ -15,13 +11,13 @@ body {
 
 .login-btn {
     background-color: #E50914 !important;
-    color: #F9F9F9 !important;
+    color: black !important;
+    padding: 20px;
+    font-weight: 900;
+    font-size: 20px;
+    text-transform: uppercase;
 }
 
-.login-link:hover {
-    text-decoration: none;
-}
-
-.container {
-    margin-top: 200px;
+.login-btn:hover {
+    background-color: #b32f36 !important;
 }

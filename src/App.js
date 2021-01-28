@@ -2,14 +2,13 @@ import './App.css';
 import './UI-components/NavBar/NavBar.css';
 import './UI-components/DisplaySearchResults/DisplaySearchResults.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, {Fragment} from "react";
+import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
-import HomePage from './UI-components/HomePage/HomePage';
 import SearchPage from './UI-components/SearchPage/SearchPage';
 import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySearchResults';
 import NavBar from './UI-components/NavBar/NavBar';
@@ -19,48 +18,66 @@ import './features/searchResults/searchResults';
 import {useDispatch} from 'react-redux';
 import {getNewAlbumsReleasesWhenAppStarts} from './features/recommendations/recommendations';
 import SearchBar from './UI-components/SearchBar/SearchBar';
+import Footer from './UI-components/Footer/Footer';
+import DisplayAlbumsNewReleasesFromRecommendations from './UI-components/DisplayAlbumsNewReleasesFromRecommendations/DisplayAlbumsNewReleasesFromRecommendations';
+import RecentReleasesHeader from './UI-components/Headers/RecentReleasesHeader/RecentReleasesHeader';
+import StreamingWidget from './UI-components/StreamingWidget/StreamingWidget'
 
 
 const App = () => {  
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
+  
   // get albums new releases when the app starts
   dispatch(getNewAlbumsReleasesWhenAppStarts());
 
   return (
-    <Fragment>
-      <div className="App">
-        <Router>
+      <Router>
+        <div>
             <Switch>
               <Route exact path = "/" >
-                <WelcomePage/>
+                <div className="welcomePage-container">
+                  <WelcomePage/>
+                </div>
               </Route>
               <Route exact path = "/homePage">
-                <NavBar/>
-                <HomePage/>
+                <div className="homepage-container">
+                  <NavBar />
+                  <RecentReleasesHeader />
+                  <DisplayAlbumsNewReleasesFromRecommendations />
+                  <StreamingWidget />
+                  <Footer />
+                </div>
               </Route>
               <Route exact path = "/search" >
-                <NavBar/>
-                <SearchBar/>
-                <SearchPage/>
+                <div className="searchPage-container">
+                  <NavBar/>
+                  <SearchBar/>
+                  <SearchPage/>
+                </div>
               </Route>
               <Route exact path = "/search/:query" >
-                <NavBar/>
-                <SearchBar/>
-                <DisplaySearchResults/>
+                <div className="searchResults-container">
+                  <NavBar/>
+                  <SearchBar/>
+                  <DisplaySearchResults/>
+                </div>
               </Route>
               <Route exact path = "/search/:query/album/:albumId">
-                <NavBar/>
-                <DisplaySingleAlbumFromSearchResults/>
+                <div className="albumFromSearchResults-container">
+                  <NavBar/>
+                  <DisplaySingleAlbumFromSearchResults/>
+                </div>
               </Route>
               <Route exact path = "/albumsNewReleases/album/:albumId">
-                <NavBar/>
-                <DisplaySingleAlbumFromRecommendations/>
+                <div className="albumFromRecommendations-container">
+                  <NavBar/>
+                  <DisplaySingleAlbumFromRecommendations/>
+                </div>
               </Route>
             </Switch>
-        </Router>
-      </div>
-    </Fragment>
+        </div>
+      </Router>
   );
 }
 

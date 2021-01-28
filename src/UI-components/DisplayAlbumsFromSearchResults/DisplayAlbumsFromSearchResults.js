@@ -18,7 +18,9 @@ const DisplayAlbumsFromSearchResults = () => {
     const displayAlbumsHeading = () => {
         if(isThereAnyAlbumResults()) {
             return (
-                <h1>Albums</h1>
+                <div className="headers-container grid-container">
+                    <h1 className="headers grid-item">Albums</h1>
+                </div>
             );
         }
     };
@@ -31,7 +33,8 @@ const DisplayAlbumsFromSearchResults = () => {
         };
         try{
             return (
-                <section key = { album.id } >
+                <section className="grid-item" 
+                key = { album.id } >
                     <img src = { album.images[1].url } />
                     <h4>
                         <button onClick={onAlbumButtonClick}>
@@ -50,7 +53,9 @@ const DisplayAlbumsFromSearchResults = () => {
         return(
             <section className="container">
                 {displayAlbumsHeading()}
-                {displayAlbums}
+                <div className="grid-container">
+                    {displayAlbums}
+                </div>
             </section>
         )
     };

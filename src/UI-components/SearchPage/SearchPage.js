@@ -5,7 +5,7 @@ const SearchPage = () => {
 
     return(
         <Fragment>
-            <h1>sEARCH fOR aNYtHING</h1>
+           
         </Fragment>
     )
 };

@@ -1,6 +1,8 @@
-.container {
-    display: grid;
-    grid-template-columns: repeat( 4, auto );
-    grid-column-gap: 30px;
-    grid-row-gap: 30px;
-  }
+.searchresults-container {
+  display: grid;
+  grid-template-columns: auto;
+}
+
+.searchresults-item {
+  
+}

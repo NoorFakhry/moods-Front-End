@@ -1,0 +1,28 @@
+.searchinput {
+    width: 25%;
+    margin-top: 10px;
+    height: 60px;
+    border-radius: 200px;
+    border-style: none;
+    outline: none;
+}
+
+.searchinput::placeholder {
+    text-align: center;
+    text-transform: uppercase;
+    color: black;
+    font-size: 20px;
+    font-weight: 50;
+}
+
+.searchinput[type="text"] {
+    font-size: 20px;
+    text-align: center;
+}
+
+.searchbar {
+    background: white;
+    width: 24%;
+    margin: 10px 0 0 44%;
+    border-radius: 61px;
+}

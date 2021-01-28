@@ -1,0 +1,12 @@
+.play-btn {
+    background: #ac3d3a !important;
+    border-radius: 100% !important;
+    transition: all .2s ease-in-out !important;
+  }
+  
+  .play-btn:hover {
+    background-color: #e43941 !important;
+    transition: all .2s ease-in-out;
+    transform: scale(1.2,1.2);
+    transition: ease-in-out;
+  }
