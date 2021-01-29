@@ -34,7 +34,7 @@ const DisplayAlbumsNewReleasesFromRecommendations = () => {
                    }
                 };
                 return (
-                        <div
+                        <div className="content-box"
                         key = {album.id}>
                             <img 
                             className="item-img"

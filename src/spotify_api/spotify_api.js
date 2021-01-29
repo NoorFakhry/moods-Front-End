@@ -1,17 +1,24 @@
 let accessToken;
+const localHostUrl = 'http://localhost:8888/newAccessToken';
+const liveHostUrl = 'https://spotify-auth-serverr.glitch.me/newAccessToken';
 
-const generateNewAccessToken = async () => {
-  const response = await fetch('http://localhost:8888/newAccessToken');
-  const data = await response.json()
-  accessToken =  data.accessToken
-  return accessToken
+// generate new access token and store it in locl storage
+const generateNewAccessToken = () => {
+  fetch(localHostUrl)
+    .then(res => res.json())
+    .then((data) => {
+      localStorage.setItem('token', data.accessToken);
+      accessToken = localStorage.getItem('token');
+    });
 };
+
+generateNewAccessToken();
 
 // generate new access token each 30 minutes
 const generateNewAccessTokenEvery30Minutes = (() => {
   const waitFor30Minutes = 1800000;
-  setInterval(async () => {
-      accessToken = await generateNewAccessToken();
+  setInterval(() => {
+      generateNewAccessToken();
   }, waitFor30Minutes);
 })();
 
@@ -20,7 +27,6 @@ const generateNewAccessTokenEvery30Minutes = (() => {
 
 // create async function that returns the search results for the user
 export const getSearchResults = async (input) => {
-  accessToken = await generateNewAccessToken();
   const url = `https://api.spotify.com/v1/search?q=${input}&type=album%2Cartist%2Ctrack%2Cplaylist&limit=50&offset=0`;
     const response = await fetch(url, {
     method: 'GET',
@@ -35,7 +41,6 @@ export const getSearchResults = async (input) => {
 
 // create async function that returns any album tracks if the user press on certain album
 export const getTracksForCertainAlbum = async (albumId) => {
-  accessToken = await generateNewAccessToken();
   const albumUrl = `https://api.spotify.com/v1/albums/${albumId}/tracks?limit=50&offset=0`;
     const response = await fetch(albumUrl,{
         method: 'GET',
@@ -51,7 +56,6 @@ export const getTracksForCertainAlbum = async (albumId) => {
 
 // create async function that returns albums new releases 
 export const getNewAlbumsReleases = async () => {
-  accessToken = await generateNewAccessToken();
   const url = 'https://api.spotify.com/v1/browse/new-releases?limit=50&offset=5';
     const response = await fetch(url, {
         method: 'GET',

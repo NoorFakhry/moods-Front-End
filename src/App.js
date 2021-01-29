@@ -21,15 +21,17 @@ import SearchBar from './UI-components/SearchBar/SearchBar';
 import Footer from './UI-components/Footer/Footer';
 import DisplayAlbumsNewReleasesFromRecommendations from './UI-components/DisplayAlbumsNewReleasesFromRecommendations/DisplayAlbumsNewReleasesFromRecommendations';
 import RecentReleasesHeader from './UI-components/Headers/RecentReleasesHeader/RecentReleasesHeader';
-import StreamingWidget from './UI-components/StreamingWidget/StreamingWidget'
-
+import StreamingWidget from './UI-components/StreamingWidget/StreamingWidget';
 
 const App = () => {  
 
   const dispatch = useDispatch();
   
-  // get albums new releases when the app starts
-  dispatch(getNewAlbumsReleasesWhenAppStarts());
+  // get albums new releases after 1 sec
+  // inorder to wait for the access token to come from the server
+  setTimeout(() => {
+    dispatch(getNewAlbumsReleasesWhenAppStarts());
+  }, 2000);
 
   return (
       <Router>
