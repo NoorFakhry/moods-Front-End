@@ -56,7 +56,7 @@ const DisplayAlbumsNewReleasesFromRecommendations = () => {
     };
 
     return(
-        <div className="content recentReleases-container">
+        <div className="content responsive-container">
             {displayAlbumsNewReleases()}
         </div>
     )

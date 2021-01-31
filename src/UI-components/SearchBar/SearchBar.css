@@ -1,18 +1,25 @@
+.searchbar {
+    display: grid;
+    grid-template-columns: 10% 90%;
+    justify-items: center;
+    align-items: baseline;
+    background: white;
+    border-radius: 24px;
+}
+
 .searchinput {
-    width: 25%;
-    margin-top: 10px;
+    padding-top: 160x;
     height: 60px;
-    border-radius: 200px;
     border-style: none;
-    outline: none;
+    outline-style: none;
+    border-radius: 25px;
 }
 
 .searchinput::placeholder {
-    text-align: center;
-    text-transform: uppercase;
     color: black;
-    font-size: 20px;
-    font-weight: 50;
+    font-size: 12px;
+    font-weight: 100;
+    
 }
 
 .searchinput[type="text"] {
@@ -20,9 +27,3 @@
     text-align: center;
 }
 
-.searchbar {
-    background: white;
-    width: 24%;
-    margin: 10px 0 0 44%;
-    border-radius: 61px;
-}

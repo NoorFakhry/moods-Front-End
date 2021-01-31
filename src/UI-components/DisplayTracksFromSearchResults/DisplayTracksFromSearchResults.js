@@ -1,7 +1,9 @@
-import React, {Fragment} from 'react';
+import './DisplayTracksFromSearchResults.css';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectAllTracks} from '../../features/searchResults/searchResults';
 import {generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import PlayButton from '../PlayButton/PlayButton';
 
 const DisplayTracksFromSearchResults = () => {
 
@@ -18,40 +20,47 @@ const DisplayTracksFromSearchResults = () => {
     const displayTracksHeading = () => {
         if(isThereAnyTracksResults()) {
             return (
-                <h1>Tracks</h1>
+                <h1 className="content-header">Tracks</h1>
             );
         }
     };
 
     // display tracks
     const displayTracks = tracks.map( track => {
+
         // when the user clicks on certain track
         const onTrackButtonClick = () => {
             generateTrackPlayBackWidget(track.id);
         };
+
+        const trackNameLen = () => {
+            if(track.name.length > 12) {
+                return `${track.name.substr(0, 60)}... `
+            } else {
+                return track.name
+            }
+        };
+
         return (
-                <section key = { track.id } >
-                    <h4>
-                        { track.name }
+                <section className="track-box"
+                 key = { track.id } >
+                    <h4 className="item-name">
+                        { trackNameLen() }
                     </h4>
-                    <button onClick={onTrackButtonClick}>Play</button>
+                    <PlayButton onPlayButtonClick={onTrackButtonClick}/>
                 </section>
         );
     } );
 
-    const showTracksResults = () => {
-        return(
-            <section className="container">
-                {displayTracksHeading()}
-                {displayTracks}
-            </section>
-        )
-    };
-
     return(
-        <Fragment>
-            {showTracksResults()}
-        </Fragment>
+        <div className="tracks">
+            <div>
+                {displayTracksHeading()}
+            </div>
+            <div className="tracks-container">
+                {displayTracks}
+            </div>
+        </div>
     );
 };
 

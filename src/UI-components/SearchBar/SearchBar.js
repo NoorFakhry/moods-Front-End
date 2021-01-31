@@ -1,5 +1,5 @@
 import './SearchBar.css';
-import React, {Fragment,useState} from 'react';
+import React, {useState} from 'react';
 import {useDispatch} from 'react-redux';
 import {Redirect} from 'react-router-dom';
 import {getSearchResultsWhileSearching, changeSearchInputLength, changeSearchInputValue} from '../../features/searchResults/searchResults';
@@ -32,17 +32,17 @@ const SearchBar = () => {
         }
     }
     return(
-        <Fragment>
+            <div className="searchPage">
                 <div className="searchbar">
-                    <FontAwesomeIcon icon={faSearch} size="lg" />
+                    <FontAwesomeIcon icon={faSearch} size="sm" />
                     <input className="searchinput"
-                    type="text" 
-                    placeholder="Search"
+                    type="text"
+                    placeholder="Search for Artists, Albums or Playlists"
                     onInput={onSearchChange}
                     ></input>
                 </div>
                {redirectToSearchResults()}
-        </Fragment>
+            </div>
     )
 };
 

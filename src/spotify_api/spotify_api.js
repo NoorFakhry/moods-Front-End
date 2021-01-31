@@ -1,4 +1,21 @@
-let accessToken;
+// get access token for the very first time from the hash url
+const getHashParams = () => {
+  let hashParams = {};
+  let e, r = /([^&;=]+)=?([^&;]*)/g,
+      q = window.location.hash.substring(1);
+  while ( e = r.exec(q)) {
+     hashParams[e[1]] = decodeURIComponent(e[2]);
+  }
+  return hashParams;
+}
+
+const tokenFromHash = getHashParams();
+if(tokenFromHash.accessToken) {
+  // if there is a token store it in the local storage
+  localStorage.setItem('token', tokenFromHash.accessToken);
+};
+let accessToken = localStorage.getItem('token');
+
 const localHostUrl = 'http://localhost:8888/newAccessToken';
 const liveHostUrl = 'https://spotify-auth-serverr.glitch.me/newAccessToken';
 
@@ -12,14 +29,12 @@ const generateNewAccessToken = () => {
     });
 };
 
-generateNewAccessToken();
-
-// generate new access token each 30 minutes
-const generateNewAccessTokenEvery30Minutes = (() => {
-  const waitFor30Minutes = 1800000;
+// renew new access token each 30 minutes
+const generateNewAccessTokenEveryFiveinutes = (() => {
+  const waitForFiveMinutes = 300000;
   setInterval(() => {
       generateNewAccessToken();
-  }, waitFor30Minutes);
+  }, waitForFiveMinutes);
 })();
 
 // functions that get data from spotify

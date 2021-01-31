@@ -9,7 +9,6 @@ import {
   Route,
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
-import SearchPage from './UI-components/SearchPage/SearchPage';
 import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySearchResults';
 import NavBar from './UI-components/NavBar/NavBar';
 import DisplaySingleAlbumFromSearchResults from './UI-components/DisplaySingleAlbumFromSearchResults/DisplaySingleAlbumFromSearchResults';
@@ -22,16 +21,17 @@ import Footer from './UI-components/Footer/Footer';
 import DisplayAlbumsNewReleasesFromRecommendations from './UI-components/DisplayAlbumsNewReleasesFromRecommendations/DisplayAlbumsNewReleasesFromRecommendations';
 import RecentReleasesHeader from './UI-components/Headers/RecentReleasesHeader/RecentReleasesHeader';
 import StreamingWidget from './UI-components/StreamingWidget/StreamingWidget';
+import DisplayArtistFromSearchResults from './UI-components/DisplayArtistFromSearchResults/DisplayArtistFromSearchResults';
+import DisplayAlbumsFromSearchResults from './UI-components/DisplayAlbumsFromSearchResults/DisplayAlbumsFromSearchResults';
+import DisplayPlayListsFromSearchResults from './UI-components/DisplayPlaylistsFromSearchResults/DisplayPlaylistsFromSearchResults';
+import DisplayTracksFromSearchResults from './UI-components/DisplayTracksFromSearchResults/DisplayTracksFromSearchResults';
 
 const App = () => {  
 
   const dispatch = useDispatch();
   
-  // get albums new releases after 1 sec
-  // inorder to wait for the access token to come from the server
-  setTimeout(() => {
-    dispatch(getNewAlbumsReleasesWhenAppStarts());
-  }, 2000);
+  // get albums new releases when the app starts
+  dispatch(getNewAlbumsReleasesWhenAppStarts());
 
   return (
       <Router>
@@ -47,7 +47,7 @@ const App = () => {
                   <NavBar />
                   <RecentReleasesHeader />
                   <DisplayAlbumsNewReleasesFromRecommendations />
-                  <StreamingWidget />
+                  {/* <StreamingWidget /> */}
                   <Footer />
                 </div>
               </Route>
@@ -55,14 +55,19 @@ const App = () => {
                 <div className="searchPage-container">
                   <NavBar/>
                   <SearchBar/>
-                  <SearchPage/>
+                  <Footer />
                 </div>
               </Route>
               <Route exact path = "/search/:query" >
                 <div className="searchResults-container">
-                  <NavBar/>
-                  <SearchBar/>
-                  <DisplaySearchResults/>
+                  <NavBar />
+                  <SearchBar />
+                  <DisplayArtistFromSearchResults />
+                  <DisplayAlbumsFromSearchResults />
+                  <DisplayPlayListsFromSearchResults />
+                  <DisplayTracksFromSearchResults />
+                  {/* <StreamingWidget /> */}
+                  <Footer />
                 </div>
               </Route>
               <Route exact path = "/search/:query/album/:albumId">
@@ -78,6 +83,7 @@ const App = () => {
                 </div>
               </Route>
             </Switch>
+            <StreamingWidget />
         </div>
       </Router>
   );

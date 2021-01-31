@@ -1,0 +1,11 @@
+.tracks-container {
+    display: grid;
+    grid-template-columns: auto;
+    gap: 10px;
+}
+
+.track-box {
+    display: grid;
+    grid-template-columns: 3.8fr .2fr;
+    gap: 10px ;
+}

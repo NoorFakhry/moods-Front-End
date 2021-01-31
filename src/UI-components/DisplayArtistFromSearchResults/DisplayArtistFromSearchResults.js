@@ -3,6 +3,8 @@ import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {selectAllArtists} from '../../features/searchResults/searchResults';
 import {generateArtistPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import PlayButton from '../PlayButton/PlayButton';
+
 
 const DisplayArtistFromSearchResults = () => {
 
@@ -22,13 +24,12 @@ const DisplayArtistFromSearchResults = () => {
     const displayArtist = () => {
         try {
             return (
-                <div className="searchresults-item"
+                <div className="content-box artist"
                  key = { mainArtist.id } >
                     <img src = { mainArtist.images[1].url } />
-                    <h4 >{mainArtist.name}</h4>
-                    <p >Artist</p>
-                    <button className="btn"
-                     onClick={onPlayButton}>Play</button>
+                    <h4 className="item-name">{mainArtist.name}</h4>
+                    <p className="item-type">Artist</p>
+                    <PlayButton onPlayButtonClick={onPlayButton} />
                 </div>
             );
         } catch(err) {
@@ -36,17 +37,9 @@ const DisplayArtistFromSearchResults = () => {
         }
     }
 
-    const showArtistResults = () => {
-        return(
-            <section>
-                {displayArtist()}
-            </section>
-        )
-    };
-
     return(
         <Fragment>
-            {showArtistResults()}
+            {displayArtist()}
         </Fragment>
     );
 };
