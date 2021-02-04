@@ -1,15 +1,13 @@
 import './App.css';
-import './UI-components/NavBar/NavBar.css';
-import './UI-components/DisplaySearchResults/DisplaySearchResults.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
+  useLocation
 } from "react-router-dom";
 import WelcomePage from './UI-components/WelcomePage/WelcomePage';
-import DisplaySearchResults from './UI-components/DisplaySearchResults/DisplaySearchResults';
 import NavBar from './UI-components/NavBar/NavBar';
 import DisplaySingleAlbumFromSearchResults from './UI-components/DisplaySingleAlbumFromSearchResults/DisplaySingleAlbumFromSearchResults';
 import DisplaySingleAlbumFromRecommendations from './UI-components/DisplaySingleAlbumFromRecommendations/DisplaySingleAlbumFromRecommendations';
@@ -19,14 +17,32 @@ import {getNewAlbumsReleasesWhenAppStarts} from './features/recommendations/reco
 import SearchBar from './UI-components/SearchBar/SearchBar';
 import Footer from './UI-components/Footer/Footer';
 import DisplayAlbumsNewReleasesFromRecommendations from './UI-components/DisplayAlbumsNewReleasesFromRecommendations/DisplayAlbumsNewReleasesFromRecommendations';
-import RecentReleasesHeader from './UI-components/Headers/RecentReleasesHeader/RecentReleasesHeader';
 import StreamingWidget from './UI-components/StreamingWidget/StreamingWidget';
 import DisplayArtistFromSearchResults from './UI-components/DisplayArtistFromSearchResults/DisplayArtistFromSearchResults';
 import DisplayAlbumsFromSearchResults from './UI-components/DisplayAlbumsFromSearchResults/DisplayAlbumsFromSearchResults';
 import DisplayPlayListsFromSearchResults from './UI-components/DisplayPlaylistsFromSearchResults/DisplayPlaylistsFromSearchResults';
 import DisplayTracksFromSearchResults from './UI-components/DisplayTracksFromSearchResults/DisplayTracksFromSearchResults';
+import RecentReleasesHeader from './UI-components/Headers/RecentReleasesHeader/RecentReleasesHeader';
 
-const App = () => {  
+const App = () => {
+  
+  const location = useLocation();
+
+  const hideNavBarOnWelocmePage = () => {
+    if(location.pathname !== '/') {
+      return (
+        <NavBar />
+      );
+    }
+  };
+
+  const hideWidgetOnWelocmePage = () => {
+    if(location.pathname !== '/') {
+      return (
+        <StreamingWidget />
+      );
+    }
+  };
 
   const dispatch = useDispatch();
   
@@ -35,7 +51,7 @@ const App = () => {
 
   return (
       <Router>
-        <div>
+        <main className="App">
             <Switch>
               <Route exact path = "/" >
                 <div className="welcomePage-container">
@@ -43,48 +59,48 @@ const App = () => {
                 </div>
               </Route>
               <Route exact path = "/homePage">
-                <div className="homepage-container">
-                  <NavBar />
-                  <RecentReleasesHeader />
-                  <DisplayAlbumsNewReleasesFromRecommendations />
-                  {/* <StreamingWidget /> */}
-                  <Footer />
+                <div className="main">
+                  <div className="homepage-container">
+                    <RecentReleasesHeader />
+                    <DisplayAlbumsNewReleasesFromRecommendations />
+                  </div>
                 </div>
               </Route>
               <Route exact path = "/search" >
-                <div className="searchPage-container">
-                  <NavBar/>
-                  <SearchBar/>
-                  <Footer />
+                <div className="main">
+                  <div className="searchPage-container">
+                    <SearchBar/>
+                  </div>
                 </div>
               </Route>
               <Route exact path = "/search/:query" >
-                <div className="searchResults-container">
-                  <NavBar />
-                  <SearchBar />
-                  <DisplayArtistFromSearchResults />
-                  <DisplayAlbumsFromSearchResults />
-                  <DisplayPlayListsFromSearchResults />
-                  <DisplayTracksFromSearchResults />
-                  {/* <StreamingWidget /> */}
-                  <Footer />
+                <div className="main">
+                  <div className="searchResults-container">
+                    <SearchBar />
+                    <DisplayArtistFromSearchResults />
+                    <DisplayAlbumsFromSearchResults />
+                    <DisplayPlayListsFromSearchResults />
+                    <DisplayTracksFromSearchResults />
+                  </div>
                 </div>
               </Route>
               <Route exact path = "/search/:query/album/:albumId">
+              <div className="main">
                 <div className="albumFromSearchResults-container">
-                  <NavBar/>
                   <DisplaySingleAlbumFromSearchResults/>
                 </div>
+              </div>
               </Route>
               <Route exact path = "/albumsNewReleases/album/:albumId">
                 <div className="albumFromRecommendations-container">
-                  <NavBar/>
                   <DisplaySingleAlbumFromRecommendations/>
                 </div>
               </Route>
             </Switch>
-            <StreamingWidget />
-        </div>
+            {hideNavBarOnWelocmePage()}
+            {hideWidgetOnWelocmePage()}
+            <Footer/>
+        </main>
       </Router>
   );
 }

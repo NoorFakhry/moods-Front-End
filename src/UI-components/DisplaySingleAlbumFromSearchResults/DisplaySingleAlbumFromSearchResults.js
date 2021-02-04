@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumById} from '../../features/searchResults/searchResults';
 import {generateAlbumPlayBackWidget,generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import PlayButton from '../PlayButton/PlayButton';
 
 
 const DisplaySingleAlbumFromSearchResults = () => {
@@ -38,6 +39,7 @@ const DisplaySingleAlbumFromSearchResults = () => {
 
     // Display the tracks of the album
     const displayTracks = () => {
+
         let tracks;
         try {
             tracks = album.tracks.map(track => {
@@ -47,8 +49,8 @@ const DisplaySingleAlbumFromSearchResults = () => {
                 };
                 return (
                     <div>
-                        <h5>{track.name}</h5>
-                        <button onClick={onTrackButtonClick}>Play</button>
+                        <h5 className="item-name">{track.name}</h5>
+                        <PlayButton onPlayButtonClick={onTrackButtonClick}/>
                     </div>
                 )
             });
@@ -59,12 +61,17 @@ const DisplaySingleAlbumFromSearchResults = () => {
 
     // Display the album
     const displayAlbum = () => {
+        const onPlayButtonClick = () => {
+            generateAlbumPlayBackWidget(album.id)
+        }
         return (
-            <div>
-                <img src={albumImage}/>
-                <h1>{albumArtist}</h1>
-                <h1>{albumName}</h1>
-                <div className="container">
+            <div className="content-box">
+                <img className="item-img"
+                src={albumImage}/>
+                <h1 className="item-name">{albumName}</h1>
+                <h1 className="artist-name">{albumArtist}</h1>
+                <PlayButton onPlayButtonClick={onPlayButtonClick}/>
+                <div className="tracks-container">
                     {displayTracks()}
                 </div>
             </div>
@@ -73,9 +80,6 @@ const DisplaySingleAlbumFromSearchResults = () => {
     return (
         <Fragment>
             {displayAlbum()}
-            <div className="container">
-                <button onClick={onPlayFullAlbumButtonClick}>Play Full Album</button>
-            </div>
         </Fragment>
     )
 };

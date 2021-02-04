@@ -7,7 +7,6 @@ import PlayButton from '../PlayButton/PlayButton';
 
 const DisplayTracksFromSearchResults = () => {
 
-    const dispatch = useDispatch();
     // select all tracks
     const tracks = useSelector( selectAllTracks );
 

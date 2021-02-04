@@ -1,5 +1,6 @@
 /* Large Screen Devices */
 @media screen and (min-width: 1025px) {
+
   .home-btn {
     background-color: #3838ff !important;
     color: white !important;
@@ -22,9 +23,13 @@
   .home-link, .search-link {
     text-decoration: none ;
   }
+
+  .home-icon, .search-icon {
+    color: rgb(175, 175, 206);
+  }
   
   .home-icon:hover, .search-icon:hover {
-    color: rgb(196, 196, 218);
+    color: white;
     transition: all .2s ease-in-out;
   }
   
@@ -32,7 +37,7 @@
     display: grid;
     grid-template-columns: auto;
     gap: 10px;
-    justify-items: center;
+    justify-items: baseline;
     padding-top: 15px;
   } 
 }

@@ -1,6 +1,6 @@
 .welcome-heading {
     color: #F9F9F9;
-    font-size: 40px;
+    font-size: 30px;
     font-family: 'Potta One', cursive;
     font-weight: 900;
 }
@@ -14,7 +14,7 @@
     color: black !important;
     padding: 20px;
     font-weight: 900;
-    font-size: 20px;
+    font-size: 14px;
     text-transform: uppercase;
 }
 
