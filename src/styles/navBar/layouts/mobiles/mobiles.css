@@ -1,0 +1,35 @@
+/* Mobile Devices */
+@media screen and (min-width: 375px) and (max-width: 424px) {
+    .nav-btns-wrapper {
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-items: center;
+      padding-top: 3%;
+    }
+  
+    .search-btn {
+      background-color: #e3403a !important;
+      font-size: 14px !important;
+    }
+  
+    .search-btn:hover {
+      background-color: #ff000d !important;
+      transition: all .2s ease-in-out !important;
+    }
+  
+    .home-btn {
+      background-color: #3838ff !important;
+      color: white !important;
+      font-size: 14px !important;
+    }
+    
+    .home-btn:hover {
+      background-color: blue !important;
+      transition: all .2s ease-in-out !important;
+    }
+  
+    .home-icon:hover, .search-icon:hover {
+      color: rgb(196, 196, 218);
+      transition: all .2s ease-in-out;
+    }
+  }

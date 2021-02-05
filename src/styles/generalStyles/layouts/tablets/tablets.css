@@ -1,0 +1,11 @@
+/* Tablet Devices */
+@media screen and (min-width: 425px) and (max-width: 768px) {
+.content-header {
+    color: white;
+    font-size: xx-large ;
+    font-weight: 900 ;
+    text-transform: uppercase;
+    padding-top: 7px;
+}
+}
+/* End ========== */

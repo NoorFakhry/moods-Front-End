@@ -1,0 +1,38 @@
+/* Small Desktop Devices */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .home-btn {
+      background-color: #3838ff !important;
+      color: white !important;
+    }
+    
+    .home-btn:hover {
+      background-color: blue !important;
+      transition: all .2s ease-in-out !important;
+    }
+    
+    .search-btn {
+      background-color: #e3403a !important;
+    }
+    
+    .search-btn:hover {
+      background-color: #ff000d !important;
+      transition: all .2s ease-in-out !important;
+    }
+    
+    .home-link, .search-link {
+      text-decoration: none ;
+    }
+    
+    .home-icon:hover, .search-icon:hover {
+      color: rgb(196, 196, 218);
+      transition: all .2s ease-in-out;
+    }
+    
+    .nav-btns-wrapper {
+      display: grid;
+      grid-template-columns: auto;
+      gap: 10px;
+      justify-items: center;
+      padding-top: 15px;
+    }
+  }

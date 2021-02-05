@@ -1,0 +1,10 @@
+/* Small Desktop Devices */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .content-header {
+        color: white;
+        font-size: xxx-large ;
+        font-weight: 900 ;
+        text-transform: uppercase;
+        padding-top: 7px;
+      }
+}

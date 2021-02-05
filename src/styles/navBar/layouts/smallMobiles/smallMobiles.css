@@ -1,0 +1,35 @@
+/* Very Small Mobile Devices */
+@media screen and (max-width: 374px) {
+    .nav-btns-wrapper {
+      display: grid;
+      grid-template-columns: auto auto;
+      justify-items: center;
+      padding-top: 3%;
+    }
+  
+    .search-btn {
+      font-size: 14px !important;
+      background-color: #e3403a !important;
+    }
+  
+    .search-btn:hover {
+      background-color: #ff000d !important;
+      transition: all .2s ease-in-out !important;
+    }
+  
+    .home-btn {
+      font-size: 14px !important;
+      background-color: #3838ff !important;
+      color: white !important;
+    }
+    
+    .home-btn:hover {
+      background-color: blue !important;
+      transition: all .2s ease-in-out !important;
+    }
+  
+    .home-icon:hover, .search-icon:hover {
+      color: rgb(196, 196, 218);
+      transition: all .2s ease-in-out;
+    }
+  }

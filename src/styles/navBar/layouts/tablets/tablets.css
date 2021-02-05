@@ -1,0 +1,31 @@
+/* Tablet Devices */
+@media screen and (min-width: 425px) and (max-width: 768px) {
+    .nav-btns-wrapper {
+      display: grid;
+      grid-template-columns: auto auto;
+      gap: 10px;
+      justify-items: center;
+      padding-top: 1%;
+    }
+  
+    .search-btn {
+      background-color: #e3403a !important;
+      margin-top: 4%;
+    }
+  
+    .search-btn:hover {
+      background-color: #ff000d !important;
+      transition: all .2s ease-in-out !important;
+    }
+  
+    .home-btn {
+      background-color: #3838ff !important;
+      color: white !important;
+      margin-top: 4%;
+    }
+    
+    .home-btn:hover {
+      background-color: blue !important;
+      transition: all .2s ease-in-out !important;
+    }
+  }

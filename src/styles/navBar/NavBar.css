@@ -1,0 +1,14 @@
+/* Large Screen Devices */
+@import './layouts/largeScreens/largeScreens.css';
+
+/* Small Desktop Devices */
+@import './layouts/smallDesktops/smallDesktops.css';
+
+/* Tablet Devices */
+@import './layouts/tablets/tablets.css';
+
+/* Mobile Devices */
+@import './layouts/mobiles/mobiles.css';
+
+/* Very Small Mobile Devices */
+@import './layouts/smallMobiles/smallMobiles.css';

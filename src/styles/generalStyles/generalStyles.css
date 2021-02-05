@@ -1,0 +1,80 @@
+/* General styles */
+
+body {
+    background-color: #141414 !important;
+  }
+  
+  body::-webkit-scrollbar {
+    width: 1em;
+  }
+  
+  body::-webkit-scrollbar-track {
+      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: #4a4a4a;
+    outline: 1px solid #575757;
+  }
+  
+  .responsive-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+    background-color: #141414;
+    justify-items: baseline;
+    overflow: auto;
+  }
+  
+  .content-box {
+    display: grid;
+    justify-items: center;
+  }
+  
+  .btn {
+    background-color: #e43941 !important;
+    color: #fff !important;
+    transition: all .2s ease-in-out !important;
+    border-radius: 20px !important;
+  }
+  
+  /* Styles for items inside content */
+  .item-name {
+    color: #e5e5e5;
+    font-weight: 900;
+    font-size: 20px;
+    text-transform: uppercase;
+  }
+  
+  .item-name:hover {
+    color: #e5e5e5;
+    text-decoration: none;
+  }
+  
+  .item-type {
+    color: #e5e5e5;
+    font-weight: 100;
+    font-size: 12px;
+  }
+  
+  .item-total {
+    color: #e5e5e5;
+    font-weight: 100;
+    font-size: 12px;
+  }
+  
+  .item-background {
+    background-color: #141414;
+    border-style: none;
+  }
+  
+  .artist-name {
+    color: #e5e5e5;
+    font-size: 14px;
+    font-weight: lighter;
+  }
+  
+  .fa-play {
+    color: white;
+  }
+  /* End General Styles ============ */

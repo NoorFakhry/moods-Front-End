@@ -1,0 +1,12 @@
+/* Mobile Devices */
+@media screen and (min-width: 375px) and (max-width: 425px) {
+.content-header {
+    color: white;
+    font-size: xx-large ;
+    font-weight: 900 ;
+    text-transform: uppercase;
+    padding-top: 7px;
+}
+}
+  /* End ========== */
+  

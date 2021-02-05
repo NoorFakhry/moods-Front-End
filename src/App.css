@@ -1,655 +1,72 @@
-/* General styles */
+/* General styles That Apply for all devices */
+@import './styles/generalStyles/generalStyles.css';
 
-body {
-  background-color: #141414 !important;
-}
+/* General Styles for Large devices */
+@import './styles/generalStyles/layouts/largecreens/largecreens.css';
 
-body::-webkit-scrollbar {
-  width: 1em;
-}
+/* General Styles for Small Desktop devices */
+@import './styles/generalStyles/layouts/smallDesktops/smallDesktops.css';
 
-body::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-}
+/* General Styles for Tablet devices */
+@import './styles/generalStyles/layouts/tablets/tablets.css';
 
-body::-webkit-scrollbar-thumb {
-  background-color: #4a4a4a;
-  outline: 1px solid #575757;
-}
+/* General Styles for Mobile devices */
+@import './styles/generalStyles/layouts/mobiles/mobiles.css';
 
-/* Layout for the Whole app */
-/* ======================== */
+/* General Styles for Small Mobile devices */
+@import './styles/generalStyles/layouts/smallMobiles/smallMobiles.css';
+
+/* End General Styles */
+/* ================== */
+
+
+/* Layouts for the Whole app */
+/* What the app will layout at each screen */
 
 /* Large Devices */
-@media screen and (min-width: 1025px) {
-  .App {
-    display: grid;
-    grid-template-columns: 10vw 90vw;
-    grid-template-rows: 85vh 10vh 5vh;
-    grid-template-areas: 
-    "navbar main"
-    "navbar widget"
-    "navbar footer"
-    ;
-  }
-
-  .sidenav {
-    grid-area: navbar;
-    background-color: black;
-  }
-
-  .main {
-    grid-area: main;
-    overflow: auto;
-  }
-
-  .main::-webkit-scrollbar {
-    width: 1em;
-  }
-  
-  .main::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  }
-  
-  .main::-webkit-scrollbar-thumb {
-    background-color: #4a4a4a;
-    outline: 1px solid #575757;
-  }
-
-  .widget {
-    grid-area: widget;
-    width: 90vw;
-    height: 10vh;
-  }
-
-  .footer {
-    grid-area: footer;
-    text-align: center;
-    font-size: 12px;
-    font-weight: 100;
-    color: white;
-  }
-}
-
-/* End Layout for the Whole app */
-
-.responsive-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1rem;
-  background-color: #141414;
-  justify-items: baseline;
-  overflow: auto;
-}
-
-.content-box {
-  display: grid;
-  justify-items: center;
-}
-
-.btn {
-  background-color: #e43941 !important;
-  color: #fff !important;
-  transition: all .2s ease-in-out !important;
-  border-radius: 20px !important;
-}
-
-/* Styles for items inside content */
-.item-name {
-  color: #e5e5e5;
-  font-weight: 900;
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.item-name:hover {
-  color: #e5e5e5;
-  text-decoration: none;
-}
-
-.item-type {
-  color: #e5e5e5;
-  font-weight: 100;
-  font-size: 12px;
-}
-
-.item-total {
-  color: #e5e5e5;
-  font-weight: 100;
-  font-size: 12px;
-}
-
-.item-background {
-  background-color: #141414;
-  border-style: none;
-}
-
-.artist-name {
-  color: #e5e5e5;
-  font-size: 14px;
-  font-weight: lighter;
-}
-
-.fa-play {
-  color: white;
-}
-/* End ============ */
-
-/* welcome page for all Devices */
-.welcomePage-container {
-  display: grid;
-  background-color: #0E0E0E;
-  justify-items: center;
-  height: 100vh;
-  width: 100vw;
-  padding: 30% ;
-}
-/* End ========== */
-
-/* Styles for Home Page for Large devices */
-@media screen and (min-width: 1025px) {
-
-  .content {
-    padding-left: 1vw;
-    height: 75vh;
-  }
-
-  .content::-webkit-scrollbar {
-    width: 1em;
-  }
-  
-  .content::-webkit-scrollbar-track {
-      box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  }
-  
-  .content::-webkit-scrollbar-thumb {
-    background-color: #4a4a4a;
-    outline: 1px solid #575757;
-  }
-
-  .header {
-    background-color: #141414;
-    height: 10vh;
-    padding-left: 1vw;
-  }
-
-  .content-header {
-    color: white;
-    font-size: xxx-large ;
-    font-weight: 900 ;
-    text-transform: uppercase;
-  }
-}
-  
-/* End ========== */
+@import './styles/layouts/largeScreens/largeScreens.css';
 
 /* Small Desktop Devices */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .content-header {
-    color: white;
-    font-size: xxx-large ;
-    font-weight: 900 ;
-    text-transform: uppercase;
-    padding-top: 7px;
-  }
-
-  .homepage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 10% 90%;
-    grid-template-rows: 10% 90%;
-    grid-template-areas: 
-        "sidebar header"
-        "sidebar main"
-  }
-  
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-  }
-  
-  .header {
-    grid-area: header;
-    background-color: #141414;
-    text-align: center;
-  }
-  
-  .content {
-    grid-area: main;
-    background-color: #141414;
-    overflow: auto;
-  }
-
-  /* .widget {
-    grid-area: widget;
-    width: 100%;
-    height: 100%;
-    background-color: #141414;
-  }
-  
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-  } */
-  
-}
-/* End ========== */
+@import './styles/layouts/smallDesktops/smallDesktops.css';
 
 /* Tablet Devices */
-@media screen and (min-width: 425px) and (max-width: 768px) {
-  .content-header {
-    color: white;
-    font-size: xx-large ;
-    font-weight: 900 ;
-    text-transform: uppercase;
-    padding-top: 7px;
-  }
-
-  .homepage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 10% 65% 13% 7% 5%;
-    grid-template-areas: 
-        "header"
-        "main"
-        "widget"
-        "sidebar"
-        "footer";
-  }
-  
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-  }
-  
-  .header {
-    grid-area: header;
-    background-color: #141414;
-    text-align: center;
-  }
-  
-  .content {
-    grid-area: main;
-    background-color: #141414;
-    overflow: auto;
-  }
-
-  .widget {
-    grid-area: widget;
-    width: 100%;
-    height: 100%;
-    background-color: #141414;
-  }
-  
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-  }
-}
-/* End ========== */
+@import './styles/layouts/tabletsScreens/tabletsScreens.css';
 
 /* Mobile Devices */
-@media screen and (min-width: 375px) and (max-width: 425px) {
-  .content-header {
-    color: white;
-    font-size: xx-large ;
-    font-weight: 900 ;
-    text-transform: uppercase;
-    padding-top: 7px;
-  }
-
-  .homepage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 10% 65% 13% 7% 5%;
-    grid-template-areas: 
-        "header"
-        "main"
-        "widget"
-        "sidebar"
-        "footer";
-  }
-  
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-  }
-  
-  .header {
-    grid-area: header;
-    background-color: #141414;
-    text-align: center;
-  }
-  
-  .content {
-    grid-area: main;
-    background-color: #141414;
-    overflow: auto;
-  }
-
-  .widget {
-    grid-area: widget;
-    width: 100%;
-    height: 100%;
-    background-color: #141414;
-  }
-  
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 12px;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-  }
-}
-/* End ========== */
+@import './styles/layouts/mobileScreens/mobileScreens.css';
 
 /* Small Mobile Devices */
-@media screen and (max-width: 375px) {
-  .content-header {
-    color: white;
-    font-size: x-large ;
-    font-weight: 900 ;
-    text-transform: uppercase;
-    padding-top: 7px;
-  }
+@import './styles/layouts/smallMobileScreens/smallMobileScreens.css';
 
-  .homepage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 10% 65% 13% 7% 5%;
-    grid-template-areas: 
-        "header"
-        "main"
-        "widget"
-        "sidebar"
-        "footer";
-  }
-  
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-  }
-  
-  .header {
-    grid-area: header;
-    background-color: #141414;
-    text-align: center;
-  }
-  
-  .content {
-    grid-area: main;
-    background-color: #141414;
-    overflow: auto;
-  }
+/* End Layouts for the Whole app */
+/* ============================= */
 
-  .widget {
-    grid-area: widget;
-    width: 100%;
-    height: 100%;
-    background-color: #141414;
-  }
-  
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 10px;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-  }
-}
-/* End ========== */
 
-/* End Styles for Home Page ========== */
-
-/* Styles for Search Page */
+/* Styles for welcome page */
+@import './styles/welcomPage/welcomePage.css';
+/* End Styles for welcome page */
 /* ====================== */
 
-/* Large Screen Devices */
-@media screen and (min-width: 1025px) {
-
-  .searchPage {
-    background-color: #141414;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 16%;
-    justify-items: center;
-    align-items: baseline;
-  }
-}
-/* End ========== */
-
-/* Small Desktop Devices */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-  .searchPage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 10% 90%;
-    grid-template-rows: 90% 10%;
-    grid-template-areas: 
-    "sidebar searchPage"
-    "sidebar footer"
-    ;
-
-  }
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-  }
-
-  .searchPage {
-    grid-area: searchPage;
-    background-color: #141414;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 16%;
-    justify-items: center;
-    align-items: center;
-  }
-
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    padding-bottom: 5px;
-    padding-top: 5px;
-  }
-}
-
-/* End =============== */
-
-/* Tablet Devices */
-@media screen and (min-width: 425px) and (max-width: 768px) {
-  .searchPage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 80% 10% 10%;
-    grid-template-areas: 
-    "searchPage"
-    "sidebar"
-    "footer"
-    ;
-  }
-
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-    display: grid;
-    align-items: end;
-  }
-
-  .searchPage {
-    grid-area: searchPage;
-    background-color: #141414;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 16%;
-    justify-items: center;
-    align-items: center;
-  }
-
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    display: grid;
-    align-items: end;
-  }
-}
-
-/* End =============== */
-
-/* Mobile Devices */
-@media screen and (min-width: 375px) and (max-width: 425px) {
-  .searchPage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 80% 10% 10%;
-    grid-template-areas: 
-    "searchPage"
-    "sidebar"
-    "footer"
-    ;
-  }
-
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-    display: grid;
-    align-items: end;
-  }
-
-  .searchPage {
-    grid-area: searchPage;
-    background-color: #141414;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 16%;
-    justify-items: center;
-    align-items: center;
-  }
-
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    display: grid;
-    align-items: end;
-  }
-}
-/* End =============== */
-
-/* Small Mobile Devices */
-@media screen and (max-width: 375px) {
-  .searchPage-container {
-    height: 100vh;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 80% 10% 10%;
-    grid-template-areas: 
-    "searchPage"
-    "sidebar"
-    "footer"
-    ;
-  }
-
-  .sidenav {
-    grid-area: sidebar;
-    background-color: #0E0E0E;
-    display: grid;
-    align-items: end;
-  }
-
-  .searchPage {
-    grid-area: searchPage;
-    background-color: #141414;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: 16%;
-    justify-items: center;
-    align-items: baseline;
-  }
-
-  .footer {
-    grid-area: footer;
-    background-color: #141414;
-    color: white;
-    font-size: 20px;
-    text-align: center;
-    display: grid;
-    align-items: end;
-  }
-}
-/* End =============== */
-
-/* End Styles for Search Page */
-
-/* Styles for Search Results Page */
+/* Styles for navBar */
+@import './styles/navBar/NavBar.css';
+/* End Styles for navBar */
 /* ====================== */
 
-/* Large Screen Devices */
-@media screen and (min-width: 1025px) {
-  .searchResults-container {
-    grid-area: main;
-    display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
-    gap: 1rem;
-  }
+/* Styles for Home page */
+/* ==================== */
+/* nothing for now */
+/* End Styles for Home page */
+/* ====================== */
 
-  .searchPage {
-    background-color: #141414;
-  }
+/* Styles for Search page */
+/* ==================== */
+@import './styles/searchPage/generalStyles/searchPage.css';
+/* End Styles for Search page */
 
-  .artist {
-    background-color: #141414;
-  }
+/* Styles for Search Results page */
 
-  .albums {
-    display: grid;
-    grid-template-columns: auto;
-    background-color: #141414;
-  }
-
-  .playlists {
-    display: grid;
-    grid-template-columns: auto;
-    background-color: #141414;
-  }
-
-  .tracks {
-    display: grid;
-    grid-template-columns: auto;
-    background-color: #141414;
-    justify-items: baseline;
-    padding-bottom: 10%;
-  }
-}
+/* ==================== */
 
 
-/* End Styles for Search Results Page */
+/* End Styles for Search Results page */
+

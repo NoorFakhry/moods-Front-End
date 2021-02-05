@@ -1,0 +1,34 @@
+/* general styles for all Devices */
+.welcomePage-container {
+  display: grid;
+  background-color: #0E0E0E;
+  justify-items: center;
+  height: 100vh;
+  width: 100vw;
+  padding: 30% ;
+  }
+
+.welcome-heading {
+  color: #F9F9F9;
+  font-size: 30px;
+  font-family: 'Potta One', cursive;
+  font-weight: 900;
+}
+
+.moods {
+  color: #E50914;
+}
+
+.login-btn {
+  background-color: #E50914 !important;
+  color: black !important;
+  padding: 20px !important;
+  font-weight: 900 !important;
+  font-size: 14px !important;
+  text-transform: uppercase !important;
+}
+
+.login-btn:hover {
+  background-color: #b32f36 !important;
+}
+  /* End ========== */

@@ -1,4 +1,3 @@
-import './WelcomePage.css';
 import React from 'react';
 
 const WelcomePage = () => {

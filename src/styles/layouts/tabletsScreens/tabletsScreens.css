@@ -1,0 +1,53 @@
+/* Layout for Tablet Devices */
+@media screen and (min-width: 425px) and (max-width: 768px) {
+    .App {
+      display: grid;
+      grid-template-columns: auto;
+      grid-template-rows: 10vh 70vh 15vh 5vh;
+      grid-template-areas: 
+      "navbar"
+      "main"
+      "widget"
+      "footer"
+      ;
+    }
+  
+    .sidenav {
+      grid-area: navbar;
+      background-color: black;
+    }
+  
+    .main {
+      grid-area: main;
+      overflow: auto;
+      background-color: #141414;
+      padding-left: 11%;
+    }
+  
+    .main::-webkit-scrollbar {
+      width: 1em;
+    }
+    
+    .main::-webkit-scrollbar-track {
+        box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    }
+    
+    .main::-webkit-scrollbar-thumb {
+      background-color: #4a4a4a;
+      outline: 1px solid #575757;
+    }
+  
+    .widget {
+      grid-area: widget;
+      width: 100vw;
+      height: 10vh;
+    }
+  
+    .footer {
+      grid-area: footer;
+      text-align: center;
+      font-size: 12px;
+      font-weight: 100;
+      color: white;
+    }
+  }
