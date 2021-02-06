@@ -1,0 +1,10 @@
+/* Mobile Devices */
+@media screen and (min-width: 375px) and (max-width: 425px) {
+/* .searchbar {
+    width: 57vw;
+} */
+
+.searchPage {
+    padding-right: 5%;
+}
+}

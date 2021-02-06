@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectAllPlaylists} from '../../features/searchResults/searchResults';
 import {generatePlaylistPlayBackWidget} from '../../features/playBackWidget/playBackWidget';

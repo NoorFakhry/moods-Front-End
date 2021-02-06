@@ -1,0 +1,9 @@
+/* general styles for tracks search results */
+.tracks-container {
+    display: grid;
+    gap: 1vh;
+}
+
+.tracks {
+    padding-bottom: 3%;
+}

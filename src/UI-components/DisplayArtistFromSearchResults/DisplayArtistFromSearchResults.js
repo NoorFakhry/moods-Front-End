@@ -1,4 +1,3 @@
-import './DisplayArtistFromSearchResults.css';
 import React, {Fragment} from 'react';
 import {useSelector} from 'react-redux';
 import {selectAllArtists} from '../../features/searchResults/searchResults';

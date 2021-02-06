@@ -1,6 +1,8 @@
+/* General Styles for search page */
 .searchPage {
   display: grid;
   justify-items: center;
+  padding-top: 1%;
 }
 
 .searchbar {
@@ -10,7 +12,7 @@
   align-items: baseline;
   background: white;
   border-radius: 24px;
-  width: 21vw;
+  width: 40vw;
 }
 
 .searchinput {

@@ -1,0 +1,17 @@
+/* General Styles for search page */
+@import './generalStyles/generalStyles.css';
+
+/* Large Screen Devices */
+@import './layouts/largeScreens/largeScreens.css';
+
+/* small desktops Screen Devices */
+@import './layouts/smallDesktops/smallDesktops.css';
+
+/* tablet devices */
+@import './layouts/tablets/tablets.css';
+
+/* Mobile devices */
+@import './layouts/mobiles/mobiles.css';
+
+/* Very Small Mobile devices */
+@import './layouts/smallMobiles/smallMobiles.css';

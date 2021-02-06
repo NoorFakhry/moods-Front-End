@@ -3,6 +3,8 @@ import {useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import {selectAlbumByIdFromRecommendations} from '../../features/recommendations/recommendations';
 import {generateAlbumPlayBackWidget, generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
+import PlayButton from '../PlayButton/PlayButton';
+
 
 const DisplaySingleAlbumFromRecommendations = () => {
     const params = useParams();
@@ -28,13 +30,6 @@ const DisplaySingleAlbumFromRecommendations = () => {
         albumName = album.name;
     } catch(err) {console.log(err)};
 
-    // when the user click on play full album button
-    // the album widget will be displayed 
-    // and current track widget will be removed
-    const onPlayFullAlbumButtonClick = () => {
-        generateAlbumPlayBackWidget(albumId);
-    };
-
     // Display the tracks of the album
     const displayTracks = () => {
         let tracks;
@@ -46,8 +41,8 @@ const DisplaySingleAlbumFromRecommendations = () => {
                 };
                 return (
                     <div key={track.id}>
-                        <h5>{track.name}</h5>
-                        <button onClick={onTrackButtonClick}>Play</button>
+                        <h5 className="item-name">{track.name}</h5>
+                        <PlayButton onPlayButtonClick={onTrackButtonClick}/>
                     </div>
                 )
             });
@@ -58,14 +53,16 @@ const DisplaySingleAlbumFromRecommendations = () => {
 
     // function that will display the album
     const displayAlbum = () => {
+        const onPlayButtonClick = () => {
+            generateAlbumPlayBackWidget(album.id)
+        }
         return (
-            <div>
-                <img src={albumImage}/>
-                <h1>{albumArtist}</h1>
-                <h1>{albumName}</h1>
-                <div className="container">
-                    {displayTracks()}
-                </div>
+            <div className="content-box">
+                <img className="item-img"
+                 src={albumImage}/>
+                <h1 className="artist-name">{albumArtist}</h1>
+                <h1 className="item-name">{albumName}</h1>
+                <PlayButton onPlayButtonClick={onPlayButtonClick}/>
             </div>
         )
     };
@@ -73,8 +70,8 @@ const DisplaySingleAlbumFromRecommendations = () => {
     return (
         <Fragment>
             {displayAlbum()}
-            <div className="container">
-                <button onClick={onPlayFullAlbumButtonClick}>Play Full Album</button>
+            <div className="responsive-container">
+                    {displayTracks()}
             </div>
         </Fragment>
     )

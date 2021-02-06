@@ -1,0 +1,7 @@
+/* Small Desktops */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .track-box {
+        display: grid;
+        grid-template-columns: 75vw 3.6vw;
+    }
+}

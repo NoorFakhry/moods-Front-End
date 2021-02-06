@@ -1,0 +1,6 @@
+/* Small Mobile Devices */
+@media screen and (max-width: 375px) {
+    .track-box {
+        display: block;
+    }
+}

@@ -51,7 +51,7 @@ const App = () => {
 
   return (
       <Router>
-        <main className="App">
+        <div className="App">
             <Switch>
               <Route exact path = "/" >
                 <div className="welcomePage-container">
@@ -92,15 +92,17 @@ const App = () => {
               </div>
               </Route>
               <Route exact path = "/albumsNewReleases/album/:albumId">
-                <div className="albumFromRecommendations-container">
-                  <DisplaySingleAlbumFromRecommendations/>
+                <div className="main">
+                  <div className="albumFromRecommendations-container">
+                    <DisplaySingleAlbumFromRecommendations/>
+                  </div>
                 </div>
               </Route>
             </Switch>
             {hideNavBarOnWelocmePage()}
             {hideWidgetOnWelocmePage()}
             <Footer/>
-        </main>
+        </div>
       </Router>
   );
 }

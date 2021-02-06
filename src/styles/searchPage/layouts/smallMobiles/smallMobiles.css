@@ -1,0 +1,10 @@
+/* Very Small Mobile Devices */
+@media screen and (max-width: 380px) {
+    .searchbar {
+        width: 85vw;
+    }
+    
+    .searchPage {
+        padding-right: 5%;
+    }
+}

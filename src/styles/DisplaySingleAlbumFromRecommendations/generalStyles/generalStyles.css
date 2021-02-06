@@ -1,0 +1,8 @@
+/* general styles for DisplaySingleAlbumFromRecommendations */
+.albumFromRecommendations-container {
+    display: grid;
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-gap: 10vh;
+    gap: 10vh;
+}

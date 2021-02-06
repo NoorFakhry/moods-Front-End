@@ -30,13 +30,6 @@ const DisplaySingleAlbumFromSearchResults = () => {
         albumName = album.name;
     } catch(err) {console.log(err)};
 
-    // when the user click on play full album button
-    // the album widget will be displayed 
-    // and current track widget will be removed
-    const onPlayFullAlbumButtonClick = () => {
-        generateAlbumPlayBackWidget(albumId);
-    };
-
     // Display the tracks of the album
     const displayTracks = () => {
 
@@ -48,7 +41,7 @@ const DisplaySingleAlbumFromSearchResults = () => {
                     generateTrackPlayBackWidget(track.id);
                 };
                 return (
-                    <div>
+                    <div className="">
                         <h5 className="item-name">{track.name}</h5>
                         <PlayButton onPlayButtonClick={onTrackButtonClick}/>
                     </div>
@@ -71,15 +64,15 @@ const DisplaySingleAlbumFromSearchResults = () => {
                 <h1 className="item-name">{albumName}</h1>
                 <h1 className="artist-name">{albumArtist}</h1>
                 <PlayButton onPlayButtonClick={onPlayButtonClick}/>
-                <div className="tracks-container">
-                    {displayTracks()}
-                </div>
             </div>
         )
     };
     return (
         <Fragment>
             {displayAlbum()}
+            <div className="responsive-container">
+                    {displayTracks()}
+            </div>
         </Fragment>
     )
 };

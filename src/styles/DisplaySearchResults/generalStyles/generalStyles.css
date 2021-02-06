@@ -1,0 +1,5 @@
+/* general styles for DisplaySearchResults */
+.searchResults-container {
+    display: grid;
+    gap: 5vh;
+}

@@ -1,6 +1,5 @@
-import './DisplayTracksFromSearchResults.css';
 import React from 'react';
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {selectAllTracks} from '../../features/searchResults/searchResults';
 import {generateTrackPlayBackWidget} from '../../features/playBackWidget/playBackWidget';
 import PlayButton from '../PlayButton/PlayButton';

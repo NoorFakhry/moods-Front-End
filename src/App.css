@@ -52,6 +52,11 @@
 /* End Styles for navBar */
 /* ====================== */
 
+/* Styles for playButton */
+@import './styles/playButton/playButton.css';
+/* End Styles for playButton */
+/* ====================== */
+
 /* Styles for Home page */
 /* ==================== */
 /* nothing for now */
@@ -60,13 +65,29 @@
 
 /* Styles for Search page */
 /* ==================== */
-@import './styles/searchPage/generalStyles/searchPage.css';
+@import './styles/searchPage/searchPage.css';
 /* End Styles for Search page */
 
 /* Styles for Search Results page */
+/* ============================== */
 
+/* Artist search results */
+@import './styles/DisplayArtistFromSearchResults/DisplayArtistFromSearchResults.css';
 /* ==================== */
 
+/* Tracks search results */
+@import './styles/DisplayTracksFromSearchResults/DisplayTracksFromSearchResults.css';
+/* ==================== */
 
-/* End Styles for Search Results page */
+/* Single Album From Search Results */
+@import './styles/DisplaySingleAlbumFromSearchResults/DisplaySingleAlbumFromSearchResults.css';
+/* ================================ */
+
+/* Single Album From Recommendations */
+@import './styles/DisplaySingleAlbumFromRecommendations/DisplaySingleAlbumFromRecommendations.css';
+/* ================================ */
+
+/* DisplaySearchResults */
+@import './styles/DisplaySearchResults/DisplaySearchResults.css';
+/* ==================== */
 
